@@ -1,0 +1,38 @@
+; 8 n o s s e l . s n o s s e l . y n a p m o c . m o c   e g a k c a p 
+ 
+{   n r a e L g n i r t S   s s a l c   c i l b u p 
+ 
+. м о л о в м и с   м ы н н а д а з   ь т и н е м а з   у в к у б   ю - k   а т с к е т   е в о л с   м о д ж а к   В   : 1   е и н а д а З / /         
+. ь т я н л о п ы в   е н   у к в о р и т к е р р о к   , а в о л с   ы н и л д   е ш ь л о б   k   и л с Е   / /         
+ 
+{   ) r e t t e l   r a h c   , k   t n i ( r e t t e L e c a l p e r   d i o v   c i l b u p         
+; " e r e h w y n a   n u r   , e c n o   e t i r W "   =   g n i r t s   g n i r t S                 
+; ) " * s \ \ ) . \ \ | ! | , | s \ \ ( * s \ \ " ( t i l p s . g n i r t s   =   s d r o w   ] [ g n i r t S                 
+ 
+; ] h t g n e l . s d r o w [ g n i r t S   w e n   =   s d r o W d e c a l p e r   ] [ g n i r t S                 
+ 
+{   ) + + i   ; h t g n e l . s d r o w   <   i   ; 0   =   i   t n i (   r o f                 
+; ) ] i [ s d r o w ( r e d l i u B g n i r t S   w e n   =   d r o w   r e d l i u B g n i r t S                         
+{   ) k   = >   ) ( h t g n e l . d r o w (   f i                         
+; ) r e t t e l   , 1   -   k ( t A r a h C t e s . d r o w                                 
+}                         
+; ) d r o w ( f O e u l a v . g n i r t S   =   ] i [ s d r o W d e c a l p e r                         
+}                 
+; g n i r t s   =   s   g n i r t S                 
+{   ) + + i   ; h t g n e l . s d r o w   <   i   ; 0   =   i   t n i (   r o f                 
+; ) ] i [ s d r o W d e c a l p e r   , ] i [ s d r o w ( e c a l p e r . s   =   s                         
+}                 
+; ) ) ] 0 [ s d r o W d e c a l p e r   , 4   , 0 ( e c a l p e r . g n i r t s ( r e f f u B g n i r t S   w e n   =   g n i r t s                         / / 
+; ) ) ] 1 [ s d r o W d e c a l p e r   , 9   , 6 ( e c a l p e r . g n i r t s ( r e f f u B g n i r t S   w e n   =   g n i r t s                         / / 
+; ) ) ] 2 [ s d r o W d e c a l p e r   , 4 1   , 2 1 ( e c a l p e r . g n i r t s ( r e f f u B g n i r t S   w e n   =   g n i r t s                         / / 
+; ) ) ] 3 [ s d r o W d e c a l p e r   , 3 2   , 6 1 ( e c a l p e r . g n i r t s ( r e f f u B g n i r t S   w e n   =   g n i r t s                         / / 
+}                 / / 
+; ) s ( n l t n i r p . t u o . m e t s y S                 
+}         
+ 
+} 
+ 
+ 
+ 
+ 
+
