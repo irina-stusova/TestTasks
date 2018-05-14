@@ -29,7 +29,7 @@
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
-            <artifactId>cucumber-testing</artifactId>
+            <artifactId>cucumber-testng</artifactId>
             <version>1.2.5</version>
         </dependency>
         <dependency>
@@ -44,8 +44,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.testing</groupId>
-            <artifactId>testing</artifactId>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
             <version>6.13.1</version>
             <scope>test</scope>
             <exclusions>
