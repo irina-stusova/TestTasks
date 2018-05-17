@@ -11,6 +11,9 @@ import com.company.lessons.lesson9.HashMapLearn;
 import com.company.lessons.lesson9.HashSetLearn;
 import com.company.lessons.lesson9.PairwiseSumAndrii;
 import com.company.lessons.lesson9.Patter;
+import com.company.lessons.utils.ArrayUtils;
+import com.company.lessons.utils.FileUtils;
+import com.company.lessons.utils.ListUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -479,49 +482,49 @@ public class Main {
 
     public static void lesson11() throws IOException {
 
-        //Задание 1. Прочитать строки из файла и поменять местами первое и последнее слова в каждой строке.
+        System.out.println("//Задание 1. Прочитать строки из файла и поменять местами первое и последнее слова в каждой строке.");
 
         SwapWords swapWords = new SwapWords();
-        List<String> fileAsList = FileUtils.readFileAsList("src\\main\\java\\com\\company\\lessons\\lesson11\\TextOriginal.txt");
-        String[][] listAsArray = swapWords.convertListToArray(fileAsList);
-        String[][] arrayWithSwappedWords = swapWords.getArrayWithSwappedWords(listAsArray);
-        FileUtils.printArray(arrayWithSwappedWords);
-        List<String> list = swapWords.convertArrayWithSwappedWordsToList(arrayWithSwappedWords);
-        FileUtils.writeToFile(list, "src\\main\\java\\com\\company\\lessons\\lesson11\\TextModified.txt");
+        List<String> fileAsList = FileUtils.readFileAsList("src\\main\\resources\\lessons\\lesson11\\TextOriginal.txt");
+        String[][] listAsArray = ListUtils.convertListToArray(fileAsList, "\\s*(\\s|,|\\.|\\?)\\s*");
+        String[][] arrayWithSwappedWords = swapWords.getArrayWithSwappedWords(listAsArray, 0, 2);
+        ArrayUtils.printArray(arrayWithSwappedWords);
+        List<String> list = ArrayUtils.convertArrayToList(arrayWithSwappedWords);
+        FileUtils.writeListToFile(list, "src\\main\\resources\\lessons\\lesson11\\TextModified.txt");
         // System.out.println("Print list with swapped words: \n" + list);
 
 
-        //Задание 2. Создать и заполнить файл случайными целыми числами. Отсортировать содержимое файла по возрастанию.
+        System.out.println(" //Задание 2. Создать и заполнить файл случайными целыми числами. Отсортировать содержимое файла по возрастанию.");
 
         RandomInts randomInts = new RandomInts();
         List<String> randomList = randomInts.generateRandomList(10);
-        randomInts.writeNumbersToFile(randomList, "src\\main\\java\\com\\company\\lessons\\lesson11\\InRandomIntegers.txt");
-        List<Integer> integerList = randomInts.readFromFile("src\\main\\java\\com\\company\\lessons\\lesson11\\InRandomIntegers.txt");
+        FileUtils.writeListToFile(randomList, "src\\main\\resources\\lessons\\lesson11\\InRandomIntegers.txt");
+        List<Integer> integerList = FileUtils.readIntsFromFile("src\\main\\resources\\lessons\\lesson11\\InRandomIntegers.txt");
         List<String> sortedList = randomInts.getSortedList(integerList);
-        FileUtils.printList(sortedList);
-        FileUtils.writeToFile(sortedList, "src\\main\\java\\com\\company\\lessons\\lesson11\\OutRandomIntegers.txt");
+        ListUtils.printList(sortedList, " ");
+        FileUtils.writeListToFile(sortedList, "src\\main\\resources\\lessons\\lesson11\\OutRandomIntegers.txt");
 
         //Задание 3. Прочитать текст Java-программы (какого-то класса)
         // и записать в другой файл в обратном порядке символы каждой строки.
 
         JavaFileReversed jfr = new JavaFileReversed();
-        List<String> fileAsList3 = jfr.readFileAsList("src\\main\\java\\com\\company\\lessons\\lesson8\\StringLearn.java");
-        String[][] listAsArray3 = jfr.getListAsArray(fileAsList3);
+        List<String> fileAsList3 = FileUtils.readFileAsList("src\\main\\java\\com\\company\\lessons\\lesson8\\StringLearn.java");
+        String[][] listAsArray3 = ListUtils.convertListToArray(fileAsList3, "");
         //jfr.getTextReversed();
         List<String> listWithTextReversed = jfr.getTextReversed(listAsArray3);
         //jfr.printArray(arrayForTextReversed);
-        jfr.writeToFile(listWithTextReversed, "src\\main\\java\\com\\company\\lessons\\lesson11\\JavaFileTextReversed.txt");
+        FileUtils.writeListToFile(listWithTextReversed, "src\\main\\resources\\lessons\\lesson11\\JavaFileTextReversed.txt");
 
 
         //Задание 4. Считать стихотворение украинского/английского/русского автора
         // и в каждом слове длиннее двух символов все строчные символы заменить прописными.
 
         CaseChange caseChange = new CaseChange();
-        List<String> fileAsList4 = caseChange.readFileAsList("src\\main\\java\\com\\company\\lessons\\lesson11\\Damasio.txt");
-        String[][] listAsArray4 = caseChange.convertListToArray(fileAsList4);
-        List<String> arrayAsList4 = caseChange.convertArrayToList(listAsArray4);
+        List<String> fileAsList4 = FileUtils.readFileAsList("src\\main\\resources\\lessons\\lesson11\\Damasio.txt");
+        String[][] listAsArray4 = ListUtils.convertListToArray(fileAsList4, "\\s*(\\s|,|\\.|\\?)\\s*");
+        List<String> arrayAsList4 = ArrayUtils.convertArrayToList(listAsArray4);
         List<String> wordsToUpper = caseChange.toUpperCase(arrayAsList4, 3);
-        FileUtils.printList(wordsToUpper);
+        ListUtils.printList(wordsToUpper, " ");
     }
 
     public static void main(String[] args) throws IOException {

@@ -20,55 +20,6 @@ public class RandomInts {
         return listStr;
     }
 
-    // метод записывает список целых чисел (как строк) в новый файл
-
-    public static void writeNumbersToFile(List<String> list, String filePath) throws IOException {
-        FileWriter fileWriter = null;
-        File file = new File(filePath);
-        try {
-            file.getParentFile().mkdirs();
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            fileWriter = new FileWriter(file);
-            for (String s : list) {
-                fileWriter.write(s + "\r\n");
-            }
-        } finally {
-            if (fileWriter != null) {
-                try {
-                    fileWriter.flush();
-                    fileWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    //метод считывает целые числа из файла в список
-    public List<Integer> readFromFile(String filePath) {
-        List<Integer> lout = new ArrayList<>();
-        File file = new File(filePath);
-        FileInputStream fileInputStream;
-        try {
-            fileInputStream = new FileInputStream(file);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream));
-            String line;
-            while ((line = br.readLine()) != null) {
-                lout.add(Integer.parseInt(line));
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return lout;
-    }
-
     //метод сортирует по возрастанию числа в списке типа Integer и потом конвертирует Integer в String
     public List<String> getSortedList(List<Integer> listInt) {
         boolean isSorted = false;
