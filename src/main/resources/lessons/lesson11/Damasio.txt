@@ -1,4 +1,4 @@
-"Descartes' Error is a delightfully written account of the author's views on brain function.
+Descartes' Error is a delightfully written account of the author's views on brain function.
 It is suitable for people who wonder how we wonder, 
 for physicians who need to be reminded of what a wonderful creation is the brain, 
-and for scientists who want to see how a hypothesis should be tested." 
+and for scientists who want to see how a hypothesis should be tested.

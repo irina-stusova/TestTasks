@@ -482,7 +482,7 @@ public class Main {
 
     public static void lesson11() throws IOException {
 
-        System.out.println("//Задание 1. Прочитать строки из файла и поменять местами первое и последнее слова в каждой строке.");
+        System.out.println("//Задание 1. Прочитать строки из файла и поменять местами первое и последнее слова в каждой строке.\n");
 
         SwapWords swapWords = new SwapWords();
         List<String> fileAsList = FileUtils.readFileAsList("src\\main\\resources\\lessons\\lesson11\\TextOriginal.txt");
@@ -491,10 +491,9 @@ public class Main {
         ArrayUtils.printArray(arrayWithSwappedWords);
         List<String> list = ArrayUtils.convertArrayToList(arrayWithSwappedWords);
         FileUtils.writeListToFile(list, "src\\main\\resources\\lessons\\lesson11\\TextModified.txt");
-        // System.out.println("Print list with swapped words: \n" + list);
 
 
-        System.out.println(" //Задание 2. Создать и заполнить файл случайными целыми числами. Отсортировать содержимое файла по возрастанию.");
+        System.out.println("\n//Задание 2. Создать и заполнить файл случайными целыми числами. Отсортировать содержимое файла по возрастанию.\n");
 
         RandomInts randomInts = new RandomInts();
         List<String> randomList = randomInts.generateRandomList(10);
@@ -505,7 +504,7 @@ public class Main {
         FileUtils.writeListToFile(sortedList, "src\\main\\resources\\lessons\\lesson11\\OutRandomIntegers.txt");
 
         //Задание 3. Прочитать текст Java-программы (какого-то класса)
-        // и записать в другой файл в обратном порядке символы каждой строки.
+        //и записать в другой файл в обратном порядке символы каждой строки.
 
         JavaFileReversed jfr = new JavaFileReversed();
         List<String> fileAsList3 = FileUtils.readFileAsList("src\\main\\java\\com\\company\\lessons\\lesson8\\StringLearn.java");
@@ -516,8 +515,8 @@ public class Main {
         FileUtils.writeListToFile(listWithTextReversed, "src\\main\\resources\\lessons\\lesson11\\JavaFileTextReversed.txt");
 
 
-        //Задание 4. Считать стихотворение украинского/английского/русского автора
-        // и в каждом слове длиннее двух символов все строчные символы заменить прописными.
+        System.out.println("\n//Задание 4. Считать стихотворение украинского/английского/русского автора");
+        System.out.println("//и в каждом слове длиннее двух символов все строчные символы заменить прописными.\n");
 
         CaseChange caseChange = new CaseChange();
         List<String> fileAsList4 = FileUtils.readFileAsList("src\\main\\resources\\lessons\\lesson11\\Damasio.txt");
@@ -525,7 +524,7 @@ public class Main {
         List<String> arrayAsList4 = ArrayUtils.convertArrayToList(listAsArray4);
         List<String> wordsToUpper = caseChange.toUpperCase(arrayAsList4, 3);
         ListUtils.printList(wordsToUpper, " ");
-    }
+  }
 
     public static void main(String[] args) throws IOException {
 //        lesson1();

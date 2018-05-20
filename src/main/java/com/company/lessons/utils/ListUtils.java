@@ -9,6 +9,7 @@ public class ListUtils {
         for (String s : list) {
             System.out.print(s + delimiter);
         }
+        System.out.println();
     }
 
     //метод преобразует список строк в многомерный массив, где внешний массив - массив строк,

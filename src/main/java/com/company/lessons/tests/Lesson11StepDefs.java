@@ -81,8 +81,8 @@ public class Lesson11StepDefs {
         writeListToFile(modifiedList, fileName);
     }
 
-    @Then("^I print List to console and use \"([^\"]*)\"$")
-    public void iPrintListToConsole(String delimiter) {
+    @Then("^I print List to console and use delimiter \"([^\"]*)\"$")
+    public void iPrintListToConsoleAndUsDelimiter(String delimiter) {
         ListUtils.printList(modifiedList, delimiter);
     }
 
