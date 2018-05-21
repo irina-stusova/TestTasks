@@ -4,6 +4,7 @@ import com.company.lessons.lesson11.*;
 import com.company.lessons.utils.ArrayUtils;
 import com.company.lessons.utils.ListUtils;
 import com.company.lessons.utils.FileUtils;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -35,8 +36,8 @@ public class Lesson11StepDefs {
 
     ////</editor-fold>
     ////<editor-fold desc="When">
-    @When("^I replace (\\d+) word and (\\d+) words and use \"([^\"]*)\"$")
-    public void iReplaceWordAndWordsAndUse(int index1, int index2, String delimiter) throws IOException {
+    @When("^I replace (\\d+) word and (\\d+) words and use delimiter \"([^\"]*)\"$")
+    public void iReplaceWordAndWordsAndUseDelimiter(int index1, int index2, String delimiter) throws IOException {
         SwapWords swapWords = new SwapWords();
         array = ListUtils.convertListToArray(initialStringList, delimiter);
         array = swapWords.getArrayWithSwappedWords(array, index1, index2);
@@ -54,15 +55,15 @@ public class Lesson11StepDefs {
         modifiedList = randomInts.getSortedList(initialIntsList);
     }
 
-    @When("^I reverse all characters in each line and use \"([^\"]*)\"$")
-    public void iReverseAllCharactersInEachLineAndUse(String delimiter) throws IOException {
+    @When("^I reverse all characters in each line and use delimiter \"([^\"]*)\"$")
+    public void iReverseAllCharactersInEachLineAndUseDelimiter(String delimiter) throws IOException {
         JavaFileReversed jfr = new JavaFileReversed();
         array = ListUtils.convertListToArray(initialStringList, delimiter);
         modifiedList = jfr.getTextReversed(array);
     }
 
-    @When("^I capitalize characters in each word longer than \"([^\"]*)\" characters and use \"([^\"]*)\"$")
-    public void iCapitalizeCharactersInEachWordLongerThanCharactersAndUse(int num, String delimiter) throws IOException {
+    @When("^I capitalize characters in each word longer than \"([^\"]*)\" characters and use delimiter \"([^\"]*)\"$")
+    public void iCapitalizeCharactersInEachWordLongerThanCharactersAndUseDelimiter (int num, String delimiter) throws IOException {
         CaseChange caseChange = new CaseChange();
         array = ListUtils.convertListToArray(initialStringList, delimiter);
         modifiedList = ArrayUtils.convertArrayToList(array);
@@ -90,6 +91,5 @@ public class Lesson11StepDefs {
     public void iWriteModifiedListWithNumbersToFile(String fileName) throws IOException {
         FileUtils.writeListToFile(modifiedList, fileName);
     }
-
     ////</editor-fold>
 }

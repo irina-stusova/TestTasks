@@ -486,7 +486,7 @@ public class Main {
 
         SwapWords swapWords = new SwapWords();
         List<String> fileAsList = FileUtils.readFileAsList("src\\main\\resources\\lessons\\lesson11\\TextOriginal.txt");
-        String[][] listAsArray = ListUtils.convertListToArray(fileAsList, "\\s*(\\s|,|\\.|\\?)\\s*");
+        String[][] listAsArray = ListUtils.convertListToArray(fileAsList, "(\\s|,|\\.|\\?)");
         String[][] arrayWithSwappedWords = swapWords.getArrayWithSwappedWords(listAsArray, 0, 2);
         ArrayUtils.printArray(arrayWithSwappedWords);
         List<String> list = ArrayUtils.convertArrayToList(arrayWithSwappedWords);
@@ -509,9 +509,7 @@ public class Main {
         JavaFileReversed jfr = new JavaFileReversed();
         List<String> fileAsList3 = FileUtils.readFileAsList("src\\main\\java\\com\\company\\lessons\\lesson8\\StringLearn.java");
         String[][] listAsArray3 = ListUtils.convertListToArray(fileAsList3, "");
-        //jfr.getTextReversed();
         List<String> listWithTextReversed = jfr.getTextReversed(listAsArray3);
-        //jfr.printArray(arrayForTextReversed);
         FileUtils.writeListToFile(listWithTextReversed, "src\\main\\resources\\lessons\\lesson11\\JavaFileTextReversed.txt");
 
 
@@ -520,11 +518,11 @@ public class Main {
 
         CaseChange caseChange = new CaseChange();
         List<String> fileAsList4 = FileUtils.readFileAsList("src\\main\\resources\\lessons\\lesson11\\Damasio.txt");
-        String[][] listAsArray4 = ListUtils.convertListToArray(fileAsList4, "\\s*(\\s|,|\\.|\\?)\\s*");
+        String[][] listAsArray4 = ListUtils.convertListToArray(fileAsList4, "(\\s|,|\\.|\\?)");
         List<String> arrayAsList4 = ArrayUtils.convertArrayToList(listAsArray4);
         List<String> wordsToUpper = caseChange.toUpperCase(arrayAsList4, 3);
         ListUtils.printList(wordsToUpper, " ");
-  }
+    }
 
     public static void main(String[] args) throws IOException {
 //        lesson1();
