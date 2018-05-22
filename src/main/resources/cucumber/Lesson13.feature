@@ -23,19 +23,27 @@ Feature: Passing different data types as arguments into steps
     today is a gift of God,
     which is why we call it the present.
     """
-  Then I print the text to console
+    Then I print the text to console
 
   Scenario: Pass DATE as an argument into the step and print the value
-    When I pass the date 26.08.1982
+    When I pass the date 26-08-1982
     Then I print the date to console
 
+  Scenario: Pass LISTS as arguments into the step and print the lists
+    When I pass the list 1,2,3 and another list 3,5,8
+    Then I print two lists to console
+
   Scenario: Pass LIST as an argument into the step and print the list
-    When I pass the list June, July, August
+    When I pass June, July, August as a list
     Then I print the list to console
 
   Scenario: Pass NUMBER as an argument into the step and print the number
     When I pass the number 7
     Then I print the number to console
+
+  Scenario: Pass BOOLEAN as an argument into the step and print the Boolean
+    When I pass the boolean true
+    When I pass the boolean false
 
 
 
