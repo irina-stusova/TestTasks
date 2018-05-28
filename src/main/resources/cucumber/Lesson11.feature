@@ -23,4 +23,3 @@ Feature: Lesson for working with files
     Given I read content from file "src\\main\\resources\\lessons\\lesson11\\Damasio.txt"
     When I capitalize characters in each word longer than "3" characters and use delimiter "(\s|,|\.|\?)"
     Then I print List to console and use delimiter " "
-

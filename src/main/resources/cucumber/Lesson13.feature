@@ -44,8 +44,3 @@ Feature: Passing different data types as arguments into steps
   Scenario: Pass BOOLEAN as an argument into the step and print the Boolean
     When I pass the boolean true
     When I pass the boolean false
-
-
-
-
-
