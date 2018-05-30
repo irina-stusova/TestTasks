@@ -26,7 +26,7 @@ public class Browser {
         return inst;
     }
 
-    public WebElement findElement(By by) {
+    public static WebElement findElement(By by) {
         System.out.println(String.format("Searching for element %s", by));
         return driver.findElement(by);
     }

@@ -15,12 +15,12 @@ import java.util.List;
 public class Lesson14StepDefs {
 
     private GooglePage googlePage = new GooglePage();
-//    private SearchResultsItem searchItem1 = new SearchResultsItem();
+    //    private SearchResultsItem searchItem1 = new SearchResultsItem();
 //    private SearchResultsItem searchItem2 = new SearchResultsItem();
-    private String header;
-    private String url;
-    private String content;
-    private List<String> urls;
+//    private String header;
+//    private String url;
+//    private String content;
+//    private List<String> urls;
 
     @Given("^I open url \"([^\"]*)\"$")
     public void iOpenUrl(String url) {
@@ -38,30 +38,58 @@ public class Lesson14StepDefs {
     }
 
     @Then("^I do the most insane things I have ever done$")
-    public List<String> iDoTheMostInsaneThingsIHaveEverDone() {
-//        List<SearchResultsItem> searchResultsItems = new ArrayList<>();
-//
-//        header = searchItem1.getHeader(Browser.getInst().findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/h3/a")));
-//        url = searchItem1.getUrl(Browser.getInst().findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/div[1]/div/div/cite")));
-//        content = searchItem1.getContent(Browser.getInst().findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/div[1]/div/span/text()")));
-//
-//        searchResultsItems.add(new SearchResultsItem(header, url, content));
-//
-//        header = searchItem2.getHeader(Browser.getInst().findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[2]/div/div/h3/a")));
-//        url = searchItem2.getUrl(Browser.getInst().findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[2]/div/div/div[1]/div/div[1]/cite")));
-//        content = searchItem2.getContent(Browser.getInst().findElement(By.xpath("//*[@id=\"rso\"]/div[2]/div/div[2]/div/div/div[1]/div/span/text()")));
-//
-//        searchResultsItems.add(new SearchResultsItem(header, url, content));
+    public void iDoTheMostInsaneThingsIHaveEverDone() {
+        String block = "//div[@id='rso']//div[@class='srg']//div[@class='g'][%s]";
+        int count = Browser.findElements(By.xpath(String.format(block, "*"))).size();
+//        List<WebElement> searchResultsDivs = Browser.findElements(By.xpath("//*[@id=\"rso\"]/div[5]/div/div[1-6]/div"));
+        List<SearchResultsItem> searchResultsItems = new ArrayList<>();
+        for (int i = 1; i <= count; i++) {
+//        for (WebElement result : searchResultsDivs) {
+            SearchResultsItem item = new SearchResultsItem();
+            item.setUrl(Browser.findElement(By.xpath(String.format(block, i) + "//cite")).getText());
+            item.setHeader(Browser.findElement(By.xpath(String.format(block, i) + "//h3/a")).getText());
+            item.setContent(Browser.findElement(By.xpath(String.format(block, i) + "//span[@class='st']")).getText());
 
-
-        List<WebElement> searchResultsDivs = Browser.findElements(By.xpath("//*[@id=\"rso\"]/div[5]/div/div[1-6]/div"));
-
-        for (int i = 0; i < searchResultsDivs.size(); i++) {
-            url = searchResultsDivs.get(i).findElement(By.tagName("cite")).getText();
-            urls.add(url);
+            searchResultsItems.add(item);
         }
-            return urls;
+//        for (int i = 0; i < searchResultsDivs.size(); i++) {
+//            url = searchResultsDivs.get(i).findElement(By.tagName("cite")).getText();
+//            urls.add(url);
+//        }
 
-        Browser.getInst().getUrl(urls.get(0)).click();
+//        Browser.getInst().getUrl(urls.get(0)).click();
     }
+
+
+    // // some failed options:
+//    List<SearchResultsItem> searchResultsItems = new ArrayList<>();
+//
+//
+//    header =searchItem1.getHeader(Browser.getInst().
+//
+//    findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/h3/a")));
+//    url =searchItem1.getUrl(Browser.getInst().
+//
+//    findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/div[1]/div/div/cite")));
+//    content =searchItem1.getContent(Browser.getInst().
+//
+//    findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[1]/div/div/div[1]/div/span/text()")));
+//
+//        searchResultsItems.add(new
+//
+//    SearchResultsItem(header, url, content));
+//
+//    header =searchItem2.getHeader(Browser.getInst().
+//
+//    findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[2]/div/div/h3/a")));
+//    url =searchItem2.getUrl(Browser.getInst().
+//
+//    findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div[2]/div/div/div[1]/div/div[1]/cite")));
+//    content =searchItem2.getContent(Browser.getInst().
+//
+//    findElement(By.xpath("//*[@id=\"rso\"]/div[2]/div/div[2]/div/div/div[1]/div/span/text()")));
+//
+//        searchResultsItems.add(new
+//
+//    SearchResultsItem(header, url, content));
 }

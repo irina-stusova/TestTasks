@@ -40,14 +40,4 @@ public class SearchResultsItem {
         this.url = url;
         this.content = content;
     }
-
-    private By linkHeader() {
-        return By.xpath(header);
-    }
-    private By linkUrl() {
-        return By.xpath(url);
-    }
-    private By textContent() {
-        return By.xpath(content);
-    }
 }
