@@ -1,5 +1,6 @@
 package com.company.lessons.lesson14;
 
+import com.company.lessons.browser.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 

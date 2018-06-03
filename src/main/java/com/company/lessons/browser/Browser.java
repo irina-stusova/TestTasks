@@ -1,4 +1,4 @@
-package com.company.lessons.lesson14;
+package com.company.lessons.browser;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -47,8 +47,19 @@ public class Browser {
         return findElement(by).getText();
     }
 
-    public void click1(By by) {
+    public void click(By by) {
         findElement(by).click();
     }
 
+    public static String getTitle() {
+        return driver.getTitle();
+    }
+
+    public static String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public void quit() {
+        driver.quit();
+    }
 }
