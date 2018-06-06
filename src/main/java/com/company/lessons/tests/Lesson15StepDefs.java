@@ -18,7 +18,7 @@ import static com.company.lessons.browser.Browser.findElement;
 
 public class Lesson15StepDefs {
     private UkrZalSearchPage ukrZalSearchPage = new UkrZalSearchPage();
-//    private TrainsListPage train = new TrainsListPage();
+    //    private TrainsListPage train = new TrainsListPage();
     private By webElement;
     Select oSelect = new Select((WebElement) webElement);
 
@@ -28,9 +28,9 @@ public class Lesson15StepDefs {
 //    }
 
     @When("^I enter the text \"([^\"]*)\" into the From input field$")
-    public void IEnterTheTextIntoTheFromInputField (String query) {
+    public void IEnterTheTextIntoTheFromInputField(String query) {
         ukrZalSearchPage.setSearchQueryFrom(query);
-webElement = ukrZalSearchPage.autocompleteFrom();
+        webElement = ukrZalSearchPage.autocompleteFrom();
         //Select oSelect = new Select((WebElement) webElement);
         oSelect.selectByValue("Киев");
     }

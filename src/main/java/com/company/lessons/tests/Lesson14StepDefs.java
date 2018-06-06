@@ -15,11 +15,11 @@ public class Lesson14StepDefs {
 
     private GooglePage googlePage = new GooglePage();
     private List<SearchResultsItem> searchResultsItems = new ArrayList<>();
-    private SearchResultsItem item = new SearchResultsItem();
+
     private WebElement webElement;
 //    private SearchResultsItem searchItem2 = new SearchResultsItem();
 //    private String header;
-//    private String url;
+    private String url;
 //    private String content;
 //    private List<String> urls;
 
@@ -44,6 +44,7 @@ public class Lesson14StepDefs {
         int count = Browser.findElements(By.xpath(String.format(block, "*"))).size();
 
         for (int i = 1; i <= count; i++) {
+            SearchResultsItem item = new SearchResultsItem();
             item.setUrl(Browser.findElement(By.xpath(String.format(block, i) + "//cite")).getText());
             item.setHeader(Browser.findElement(By.xpath(String.format(block, i) + "//h3/a")).getText());
             item.setContent(Browser.findElement(By.xpath(String.format(block, i) + "//span[@class='st']")).getText());
@@ -56,13 +57,15 @@ public class Lesson14StepDefs {
     @When("^I click the (\\d+) search result link$")
     public void iClickTheSearchResultLink(int n) {
         webElement = searchResultsItems.get(n);
-        Browser.getInst().getUrl(item.getUrl(webElement));
+        url = searchResultsItems.get(n).getUrl(webElement);
+        Browser.getInst().getUrl(searchResultsItems.get(n).getUrl(webElement));
     }
 
     @Then("^I get the page url opened and compare it to required link$")
     public void iGetThePageUrlOpenedAndCompareItToRequiredLink() {
         String currentUrl = Browser.getCurrentUrl();
-        if (currentUrl.equals(item.getUrl(webElement))) {
+
+        if (currentUrl.equals(url)) {
             System.out.println(String.format("Required url is opened: %s", currentUrl));
         } else {
             System.out.println(String.format("Incorrect url is opened: %s", currentUrl));
