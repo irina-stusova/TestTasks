@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 public class UkrZalSearchPage {
-    private static final String SEARCH_PAGE_URL_IDENTIFIER = "https://booking.uz.gov.ua";
-    private static final String INPUT_FROM_NAME = "from-title";
-    private static final String INPUT_TO_NAME = "to-title";
+    private static final String SEARCH_PAGE_URL_IDENTIFIER = "https://booking.uz.gov.ua/ru/";
+    private static final String INPUT_FROM_NAME = "//div[@class='stations']//input[@name='from-title']";
+    private static final String INPUT_TO_NAME = "//div[@class='stations']//input[@name='to-title']";
     private static final String LINK_TOMORROW_XPATH = "//*[@id='search-frm']//div[@class='link']//a[2]";
     private static final String DATE_CALENDAR_NAME = "date-hover";
     private static final String SELECT_AUTOCOMPLETE_FROM_ID = "ui-id-1";
@@ -35,11 +35,11 @@ public class UkrZalSearchPage {
     }
 
     public By inputQueryFrom() {
-        return By.name(INPUT_FROM_NAME);
+        return By.xpath(INPUT_FROM_NAME);
     }
 
     public By inputQueryTo() {
-        return By.name(INPUT_TO_NAME);
+        return By.xpath(INPUT_TO_NAME);
     }
 
     public By linkTomorrow() {

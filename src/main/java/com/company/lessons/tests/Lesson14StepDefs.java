@@ -17,11 +17,9 @@ public class Lesson14StepDefs {
     private List<SearchResultsItem> searchResultsItems = new ArrayList<>();
 
     private WebElement webElement;
-//    private SearchResultsItem searchItem2 = new SearchResultsItem();
-//    private String header;
+    //    private String header;
     private String url;
 //    private String content;
-//    private List<String> urls;
 
     @Given("^I open url \"([^\"]*)\"$")
     public void iOpenUrl(String url) {

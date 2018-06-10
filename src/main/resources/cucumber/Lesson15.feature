@@ -1,9 +1,13 @@
 Feature: Search and booking on the UkrZaliznytsya website
 
   Scenario: Open the UkrZaliznytsya Search page, enter a departure city and an arrival city, click the submit search button
-    Given I open url "https://booking.uz.gov.ua"
+    Given I open url "https://booking.uz.gov.ua/ru/"
     When I enter the text "Киев" into the From input field
+    Then The autocomplete list with id "ui-id-1" is shown
+    And I select the option from list matching my query "Киев"
     When I enter the text "Мелитополь" into the To input field
+    Then The autocomplete list with id "ui-id-2" is shown
+    And I select the option from list matching my query "Мелитополь"
     When I click the Day link
     When I click the Search Trains On button
 #    Then I'm presented with the list of trains search results

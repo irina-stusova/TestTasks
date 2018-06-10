@@ -9,12 +9,10 @@ import java.util.List;
 public class Browser {
     private static WebDriver driver;
 
-
     public Browser(){
     }
 
     private static Browser inst = init();
-
     private static Browser init() {
         Browser chromeInstance = new Browser();
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, "src\\main\\resources\\drivers\\chromedriver.exe");

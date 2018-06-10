@@ -1,10 +1,9 @@
 package com.company.lessons.tests;
 
 import com.company.lessons.browser.Browser;
-import com.company.lessons.lesson15.TrainsListPage;
+import com.company.lessons.lesson15.AutocompleteList;
 import com.company.lessons.lesson15.UkrZalSearchPage;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.Given;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
@@ -14,32 +13,58 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.company.lessons.browser.Browser.findElement;
-
 public class Lesson15StepDefs {
     private UkrZalSearchPage ukrZalSearchPage = new UkrZalSearchPage();
-    //    private TrainsListPage train = new TrainsListPage();
-    private By webElement;
-    Select oSelect = new Select((WebElement) webElement);
+    private List<AutocompleteList> autocompleteListOptions = new ArrayList<AutocompleteList>() {
+        @Override
+        public AutocompleteList get(int index) {
+            return null;
+        }
 
-//    @Given("^I open url \"([^\"]*)\"$")
-//    public void iOpenUrl(String url) {
-//        Browser.getInst().getUrl(url);
-//    }
+        @Override
+        public int size() {
+            return 0;
+        }
+    };
+    //    private TrainsListPage train = new TrainsListPage();
+    //private WebElement webElement;
+    Select oSelect;
+
 
     @When("^I enter the text \"([^\"]*)\" into the From input field$")
     public void IEnterTheTextIntoTheFromInputField(String query) {
         ukrZalSearchPage.setSearchQueryFrom(query);
-        webElement = ukrZalSearchPage.autocompleteFrom();
-        //Select oSelect = new Select((WebElement) webElement);
-        oSelect.selectByValue("Киев");
     }
 
     @When("^I enter the text \"([^\"]*)\" into the To input field$")
     public void iEnterTheTextIntoTheToInputField(String query) {
         ukrZalSearchPage.setSearchQueryTo(query);
-        webElement = ukrZalSearchPage.autocompleteTo();
-        oSelect.selectByValue("Мелитополь");
+    }
+
+    @Then("^The autocomplete list with id \"([^\"]*)\" is shown$")
+    public List<AutocompleteList> theAutocompleteListWithIdIsShown(String id) {
+        String block = "//ul[@id='" + id + "']/li[%s]";
+        int count = Browser.findElements(By.xpath(String.format(block, "*"))).size();
+        for (int i = 1; i <= count; i++) {
+            AutocompleteList option = new AutocompleteList();
+            option.setListOption(Browser.findElement(By.xpath(String.format(block, i))).getText());
+            autocompleteListOptions.add(option);
+        }
+        return autocompleteListOptions;
+    }
+
+    @And("^I select the option from list matching my query \"([^\"]*)\"$")
+    public void iSelectTheOptionFromListMatchingMyQuery(String query) {
+        for (int i = 0; i < autocompleteListOptions.size(); i++) {
+            AutocompleteList option = autocompleteListOptions.get(i);
+            if (option.toString().equalsIgnoreCase(query)) {
+                option.click();
+//                oSelect = new Select(option);
+//                oSelect.selectByValue(query);
+            } else {
+                break;
+            }
+        }
     }
 
     @When("^I click the Day link$")
