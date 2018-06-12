@@ -1,35 +1,21 @@
 package com.company.lessons.tests;
 
 import com.company.lessons.browser.Browser;
-import com.company.lessons.lesson15.AutocompleteList;
 import com.company.lessons.lesson15.UkrZalSearchPage;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import static com.company.lessons.browser.Browser.findElement;
+import static com.company.lessons.browser.Browser.wait;
 
 public class Lesson15StepDefs {
     private UkrZalSearchPage ukrZalSearchPage = new UkrZalSearchPage();
-    private List<AutocompleteList> autocompleteListOptions = new ArrayList<AutocompleteList>() {
-        @Override
-        public AutocompleteList get(int index) {
-            return null;
-        }
-
-        @Override
-        public int size() {
-            return 0;
-        }
-    };
-    //    private TrainsListPage train = new TrainsListPage();
-    //private WebElement webElement;
-    Select oSelect;
-
 
     @When("^I enter the text \"([^\"]*)\" into the From input field$")
     public void IEnterTheTextIntoTheFromInputField(String query) {
@@ -41,34 +27,30 @@ public class Lesson15StepDefs {
         ukrZalSearchPage.setSearchQueryTo(query);
     }
 
-    @Then("^The autocomplete list with id \"([^\"]*)\" is shown$")
-    public List<AutocompleteList> theAutocompleteListWithIdIsShown(String id) {
-        String block = "//ul[@id='" + id + "']/li[%s]";
-        int count = Browser.findElements(By.xpath(String.format(block, "*"))).size();
-        for (int i = 1; i <= count; i++) {
-            AutocompleteList option = new AutocompleteList();
-            option.setListOption(Browser.findElement(By.xpath(String.format(block, i))).getText());
-            autocompleteListOptions.add(option);
-        }
-        return autocompleteListOptions;
-    }
+    @Then("^I select the option matching my query \"([^\"]*)\" from list with id \"([^\"]*)\"$")
+    public void iSelectTheOptionMatchingMyQueryFromListWithId(String query, String id) {
+        try {
+            WebElement autoOptions = findElement(By.id(id));
+            wait.until(ExpectedConditions.visibilityOf(autoOptions));
 
-    @And("^I select the option from list matching my query \"([^\"]*)\"$")
-    public void iSelectTheOptionFromListMatchingMyQuery(String query) {
-        for (int i = 0; i < autocompleteListOptions.size(); i++) {
-            AutocompleteList option = autocompleteListOptions.get(i);
-            if (option.toString().equalsIgnoreCase(query)) {
-                option.click();
-//                oSelect = new Select(option);
-//                oSelect.selectByValue(query);
-            } else {
-                break;
+            List<WebElement> optionsToSelect = autoOptions.findElements(By.tagName("li"));
+            for (WebElement option : optionsToSelect) {
+                if (option.getText().equalsIgnoreCase(query)) {
+                    option.click();
+                    break;
+                }
             }
+        } catch (
+                NoSuchElementException e) {
+            System.out.println(e.getStackTrace());
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
         }
     }
 
-    @When("^I click the Day link$")
-    public void iClickTheDayLink() {
+
+    @When("^I click the Departure Day link$")
+    public void iClickTheDepartureDayLink() {
         By linkTomorrow = ukrZalSearchPage.linkTomorrow();
         Browser.getInst().click(linkTomorrow);
     }
@@ -77,5 +59,18 @@ public class Lesson15StepDefs {
     public void iClickTheSearchTrainsOnButton() {
         By buttonSearch = ukrZalSearchPage.buttonSearch();
         Browser.getInst().click(buttonSearch);
+    }
+
+
+    @Then("^I'm presented with search results$")
+    public void iMPresentedWithSearchResults() {
+        String noTrains = "По заданному Вами направлению мест нет. \n Но Вы можете посмотреть маршруты с пересадкой.";
+        By sss = ukrZalSearchPage.searchError();
+        WebElement searchErrorMessage = findElement(By.xpath(String.valueOf(sss)));
+        if (searchErrorMessage.getText().equalsIgnoreCase(noTrains)) {
+            System.out.println("No trains available yet!");
+        } else {
+            // to be continued ...
+        }
     }
 }

@@ -3,12 +3,13 @@ package com.company.lessons.browser;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class Browser {
     private static WebDriver driver;
-
+    public static WebDriverWait wait;
     public Browser(){
     }
 
@@ -17,6 +18,7 @@ public class Browser {
         Browser chromeInstance = new Browser();
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, "src\\main\\resources\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 5);
         return chromeInstance;
     }
 

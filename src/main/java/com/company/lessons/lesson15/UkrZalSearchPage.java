@@ -12,7 +12,8 @@ public class UkrZalSearchPage {
     private static final String DATE_CALENDAR_NAME = "date-hover";
     private static final String SELECT_AUTOCOMPLETE_FROM_ID = "ui-id-1";
     private static final String SELECT_AUTOCOMPLETE_TO_ID = "ui-id-2";
-    private static final String BUTTON_SUBMIT_SEARCH_XPATH = "//*[@id='search-frm']//button";
+    private static final String BUTTON_SUBMIT_SEARCH_XPATH = "//*[@id='search-frm']//button[@type='submit']";
+    private static final String SEARCH_ERROR_XPATH = "//div[@id='train-list']//div[@class='search-error']";
 
     public void setSearchQueryFrom(String query) {
         Browser.getInst().sendQuery(inputQueryFrom(), query);
@@ -29,6 +30,7 @@ public class UkrZalSearchPage {
     public String getSearchQueryTo() {
         return Browser.getInst().getText(inputQueryTo());
     }
+
 
     public void search() {
         Browser.getInst().sendQuery(inputQueryFrom(), Keys.ENTER.toString());
@@ -56,5 +58,9 @@ public class UkrZalSearchPage {
 
     public By buttonSearch() {
         return By.xpath(BUTTON_SUBMIT_SEARCH_XPATH);
+    }
+
+    public By searchError() {
+        return By.xpath(SEARCH_ERROR_XPATH);
     }
 }
