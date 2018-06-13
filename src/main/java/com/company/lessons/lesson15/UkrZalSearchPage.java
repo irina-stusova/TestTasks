@@ -14,6 +14,7 @@ public class UkrZalSearchPage {
     private static final String SELECT_AUTOCOMPLETE_TO_ID = "ui-id-2";
     private static final String BUTTON_SUBMIT_SEARCH_XPATH = "//*[@id='search-frm']//button[@type='submit']";
     private static final String SEARCH_ERROR_XPATH = "//div[@id='train-list']//div[@class='search-error']";
+//    private static final String SEARCH_ERROR_XPATH = "//div[@id='train-list']//div[@class='search-error']";
 
     public void setSearchQueryFrom(String query) {
         Browser.getInst().sendQuery(inputQueryFrom(), query);

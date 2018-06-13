@@ -6,19 +6,23 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Browser {
     private static WebDriver driver;
     public static WebDriverWait wait;
-    public Browser(){
+
+    public Browser() {
     }
 
     private static Browser inst = init();
+
     private static Browser init() {
         Browser chromeInstance = new Browser();
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, "src\\main\\resources\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 5);
+        driver.manage().timeouts().implicitlyWait(3000L, TimeUnit.MILLISECONDS);
         return chromeInstance;
     }
 
@@ -35,7 +39,7 @@ public class Browser {
         return driver.findElements(by);
     }
 
-    public void sendQuery (By by, String query){
+    public void sendQuery(By by, String query) {
         findElement(by).sendKeys(query);
     }
 

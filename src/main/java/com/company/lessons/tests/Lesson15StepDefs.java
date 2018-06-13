@@ -64,13 +64,21 @@ public class Lesson15StepDefs {
 
     @Then("^I'm presented with search results$")
     public void iMPresentedWithSearchResults() {
-        String noTrains = "По заданному Вами направлению мест нет. \n Но Вы можете посмотреть маршруты с пересадкой.";
-        By sss = ukrZalSearchPage.searchError();
-        WebElement searchErrorMessage = findElement(By.xpath(String.valueOf(sss)));
+        String noTrains = "По заданному Вами направлению мест нет.\nНо Вы можете посмотреть маршруты с пересадкой.";
+        By searchError = ukrZalSearchPage.searchError();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement searchErrorMessage = findElement(searchError);
         if (searchErrorMessage.getText().equalsIgnoreCase(noTrains)) {
             System.out.println("No trains available yet!");
         } else {
             // to be continued ...
+            System.out.println("Uppsssss");
         }
     }
 }
