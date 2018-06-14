@@ -41,25 +41,25 @@ public class Lesson15StepDefs {
                     break;
                 }
             }
-        } catch (
-                NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             System.out.println(e.getStackTrace());
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
     }
 
-
     @When("^I click the Calendar field$")
     public void iClickTheCalendarField() {
+        String currentDate = ukrZalSearchPage.getCurrentDateXpath();
+        System.out.println("currentDate: " + currentDate);
+
         By calendar = ukrZalSearchPage.calendar();
         Browser.getInst().click(calendar);
-
+        Browser.getInst().click(By.linkText("30"));
+//        ukrZalSearchPage.setInputDate("30.06.2018");
 //        WebElement month = findElement(calendar);
 //        Select monthCombo = new Select((WebElement) calendar);
 //        monthCombo.selectByVisibleText("Июль");
-
-        Browser.getInst().click(By.linkText("30"));
     }
 
     @When("^I click the Departure Day link$")
@@ -73,7 +73,6 @@ public class Lesson15StepDefs {
         By buttonSearch = ukrZalSearchPage.buttonSearch();
         Browser.getInst().click(buttonSearch);
     }
-
 
     @Then("^I'm presented with search results$")
     public void iMPresentedWithSearchResults() {
