@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -48,6 +49,18 @@ public class Lesson15StepDefs {
         }
     }
 
+
+    @When("^I click the Calendar field$")
+    public void iClickTheCalendarField() {
+        By calendar = ukrZalSearchPage.calendar();
+        Browser.getInst().click(calendar);
+
+//        WebElement month = findElement(calendar);
+//        Select monthCombo = new Select((WebElement) calendar);
+//        monthCombo.selectByVisibleText("Июль");
+
+        Browser.getInst().click(By.linkText("30"));
+    }
 
     @When("^I click the Departure Day link$")
     public void iClickTheDepartureDayLink() {

@@ -61,6 +61,10 @@ public class UkrZalSearchPage {
         return By.xpath(BUTTON_SUBMIT_SEARCH_XPATH);
     }
 
+    public By calendar() {
+        return By.name(DATE_CALENDAR_NAME);
+    }
+
     public By searchError() {
         return By.xpath(SEARCH_ERROR_XPATH);
     }

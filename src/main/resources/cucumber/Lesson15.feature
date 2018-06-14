@@ -8,7 +8,8 @@ Feature: Search and booking on the UkrZaliznytsya website
     When I enter the text "Мел" into the To input field
 #    Then The autocomplete list with id "ui-id-2" is shown
     Then I select the option matching my query "Мелитополь" from list with id "ui-id-2"
-    When I click the Departure Day link
+    When I click the Calendar field
+#    When I click the Departure Day link
     When I click the Search Trains On button
     Then I'm presented with search results
 #    When I click the 0 search result link
