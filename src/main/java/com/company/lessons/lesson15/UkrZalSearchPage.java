@@ -4,7 +4,6 @@ import com.company.lessons.browser.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import static com.company.lessons.browser.Browser.findElement;
 
 public class UkrZalSearchPage {
     private static final String SEARCH_PAGE_URL_IDENTIFIER = "https://booking.uz.gov.ua/ru/";
@@ -16,7 +15,7 @@ public class UkrZalSearchPage {
     private static final String SELECT_AUTOCOMPLETE_TO_ID = "ui-id-2";
     private static final String BUTTON_SUBMIT_SEARCH_XPATH = "//*[@id='search-frm']//button[@type='submit']";
     private static final String SEARCH_ERROR_XPATH = "//div[@id='train-list']//div[@class='search-error']";
-    private static final String CURRENT_DATE_XPATH = "//div[@class='date']/input[@type='text'][@value]";
+    private static final String CURRENT_DATE_XPATH = "//div[@class='date']/input[@type='text']";
     private static final String INPUT_DATE_XPATH = "//div[@class='date']/input[@type='hidden'][@value]";
 
     public void setSearchQueryFrom(String query) {
@@ -36,7 +35,7 @@ public class UkrZalSearchPage {
     }
 
     public String getCurrentDateXpath() {
-     return findElement(currentDate()).getAttribute(CURRENT_DATE_XPATH);
+     return Browser.findElement(currentDate()).getAttribute("value");
     }
 
     public void setInputDate(String date) {
