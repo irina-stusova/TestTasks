@@ -2,6 +2,8 @@ package com.company.lessons.tests;
 
 import com.company.lessons.browser.Browser;
 import com.company.lessons.lesson15.UkrZalSearchPage;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
@@ -56,7 +58,6 @@ public class Lesson15StepDefs {
         By calendar = ukrZalSearchPage.calendar();
         Browser.getInst().click(calendar);
         Browser.getInst().click(By.linkText("30"));
-//        ukrZalSearchPage.setInputDate("30.06.2018");
 //        WebElement month = findElement(calendar);
 //        Select monthCombo = new Select((WebElement) calendar);
 //        monthCombo.selectByVisibleText("Июль");
