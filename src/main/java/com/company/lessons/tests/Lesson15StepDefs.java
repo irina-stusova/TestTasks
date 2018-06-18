@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static com.company.lessons.browser.Browser.findElement;
-import static com.company.lessons.browser.Browser.wait;
 
 public class Lesson15StepDefs {
     private UkrZalSearchPage ukrZalSearchPage = new UkrZalSearchPage();
@@ -34,7 +33,7 @@ public class Lesson15StepDefs {
     public void iSelectTheOptionMatchingMyQueryFromListWithId(String query, String id) {
         try {
             WebElement autoOptions = findElement(By.id(id));
-            wait.until(ExpectedConditions.visibilityOf(autoOptions));
+//            wait.until(ExpectedConditions.visibilityOf(autoOptions));
 
             List<WebElement> optionsToSelect = autoOptions.findElements(By.tagName("li"));
             for (WebElement option : optionsToSelect) {
@@ -56,8 +55,10 @@ public class Lesson15StepDefs {
         System.out.println("currentDate: " + currentDate);
 
         By calendar = ukrZalSearchPage.calendar();
-        Browser.getInst().click(calendar);
-        Browser.getInst().click(By.linkText("30"));
+        WebElement webElement = Browser.findElement(calendar);
+        Browser.getInst().click(calendar, webElement);
+
+        Browser.getInst().click(By.linkText("30"), webElement);
 //        WebElement month = findElement(calendar);
 //        Select monthCombo = new Select((WebElement) calendar);
 //        monthCombo.selectByVisibleText("Июль");
@@ -66,13 +67,15 @@ public class Lesson15StepDefs {
     @When("^I click the Departure Day link$")
     public void iClickTheDepartureDayLink() {
         By linkTomorrow = ukrZalSearchPage.linkTomorrow();
-        Browser.getInst().click(linkTomorrow);
+        WebElement webElement = Browser.findElement(linkTomorrow);
+        Browser.getInst().click(linkTomorrow, webElement);
     }
 
     @When("^I click the Search Trains On button$")
     public void iClickTheSearchTrainsOnButton() {
         By buttonSearch = ukrZalSearchPage.buttonSearch();
-        Browser.getInst().click(buttonSearch);
+        WebElement webElement = Browser.findElement(buttonSearch);
+        Browser.getInst().click(buttonSearch, webElement);
     }
 
     @Then("^I'm presented with search results$")

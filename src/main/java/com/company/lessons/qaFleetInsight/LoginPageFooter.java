@@ -59,6 +59,7 @@ public class LoginPageFooter {
     public String getNameLegalizationServices() {
         return Browser.findElement(linkLegalizationServices()).getText();
     }
+
     public String getLinkSafetyBulletins() {
         return Browser.findElement(linkSafetyBulletins()).getAttribute("href");
     }
@@ -70,30 +71,39 @@ public class LoginPageFooter {
     public By linkContactUs() {
         return By.xpath(LINK_CONTACT_US_XPATH);
     }
+
     public By linkGoPenske() {
         return By.xpath(LINK_GOPENSKE_HREF);
     }
+
     public By linkUsedTrucks() {
         return By.xpath(LINK_USED_TRUCKS_HREF);
     }
+
     public By linkPenskeNews() {
         return By.xpath(LINK_PENSKE_NEWS_HREF);
     }
+
     public By supportPhone() {
         return By.xpath(LABEL_SUPPORT_PHONE_HREF);
     }
+
     public By copyRight() {
         return By.id(LABEL_COPYRIGHT_ID);
     }
+
     public By linkPrivacyPolicy() {
         return By.xpath(LINK_PRIVACY_POLICY_HREF);
     }
+
     public By linkTermsAndConditions() {
         return By.xpath(LINK_TERMS_AND_CONDITIONS_HREF);
     }
+
     public By linkLegalizationServices() {
         return By.xpath(LINK_LEGALIZATION_SERVICES_HREF);
     }
+
     public By linkSafetyBulletins() {
         return By.xpath(LINK_SAFETY_BULLETINS_HREF);
     }
