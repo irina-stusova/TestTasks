@@ -1,19 +1,17 @@
-package com.company.lessons.tests;
+package com.company.lessons.tests.qaFleetInsight;
 
 import com.company.lessons.browser.Browser;
-import com.company.lessons.qaFleetInsight.LoginPageFooter;
-import com.company.lessons.qaFleetInsight.PrivacyPolicyTakeover;
-import com.company.lessons.qaFleetInsight.TermsAndConditionsTakeover;
-import cucumber.api.PendingException;
+import com.company.lessons.qaFleetInsight.loginPage.LoginPageFooter;
+import com.company.lessons.qaFleetInsight.loginPage.PrivacyPolicyTakeover;
+import com.company.lessons.qaFleetInsight.loginPage.TermsAndConditionsTakeover;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-public class QaFleetInsightStepDefs {
+public class FooterStepDefs {
     private LoginPageFooter loginPageFooter = new LoginPageFooter();
     private PrivacyPolicyTakeover privacyPolicyTakeover = new PrivacyPolicyTakeover();
     private TermsAndConditionsTakeover termsAndConditionsTakeover = new TermsAndConditionsTakeover();
@@ -59,8 +57,9 @@ public class QaFleetInsightStepDefs {
 
     @Then("^I check the Roadside Assistance Support phone number \"([^\"]*)\"$")
     public void iCheckTheRoadsideAssistanceSupportPhoneNumber(String expectedPhoneNumber) {
-        String actualPhoneNumber = loginPageFooter.getLabelSupportPhone();
-        if (expectedPhoneNumber.equals(actualPhoneNumber.substring(5))) {
+        String actualPhoneNumber = loginPageFooter.getLabelSupportPhone().substring(5);
+        actualPhoneNumber = actualPhoneNumber.replaceAll("\\D", "");
+        if (expectedPhoneNumber.equals(actualPhoneNumber)) {
             System.out.println(String.format("Actual result matches Expected result: \nAR = ER: %s", expectedPhoneNumber));
         } else {
             System.out.println(String.format("Actual result doesn't match Expected result: \nAR: %s; ER: %s", actualPhoneNumber, expectedPhoneNumber));

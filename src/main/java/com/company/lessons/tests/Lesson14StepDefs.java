@@ -69,9 +69,4 @@ public class Lesson14StepDefs {
             System.out.println(String.format("Incorrect url is opened: %s", currentUrl));
         }
     }
-
-    @Then("^I close all windows$")
-    public void iCloseAllWindows() {
-        Browser.getInst().quit();
-    }
 }

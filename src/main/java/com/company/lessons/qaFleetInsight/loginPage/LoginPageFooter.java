@@ -1,4 +1,4 @@
-package com.company.lessons.qaFleetInsight;
+package com.company.lessons.qaFleetInsight.loginPage;
 
 import com.company.lessons.browser.Browser;
 import org.openqa.selenium.By;

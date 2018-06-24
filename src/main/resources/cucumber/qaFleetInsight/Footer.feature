@@ -16,7 +16,7 @@ Feature: Check activity of the links on the Login Page Footer
 
   Scenario: I open the FleetInsight Login Page and check the phone number in the 24/7 Roadside Assistance section of the Footer
     When I open url "https://qa.fleetinsight.com"
-    Then I check the Roadside Assistance Support phone number "1-800-526-0798"
+    Then I check the Roadside Assistance Support phone number "18005260798"
 
   Scenario: I open the FleetInsight Login Page and check activity of the links in the For Customers section of the Footer
     When I open url "https://qa.fleetinsight.com"

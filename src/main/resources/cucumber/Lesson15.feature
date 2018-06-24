@@ -14,4 +14,3 @@ Feature: Search and booking on the UkrZaliznytsya website
     Then I'm presented with search results
 #    When I click the 0 search result link
 #    Then I get the page url opened and compare it to required link
-    Then I close all windows
