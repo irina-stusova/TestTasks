@@ -1,38 +1,24 @@
 package com.company.lessons.qaFleetInsight.loginPage.takeoverContactUs;
 
 import org.openqa.selenium.*;
-
 import java.util.List;
 
-public class ContactUsDropDownOption implements WebElement {
-    private String salutationOption;
-    private String bestTimeToReachOption;
-    private String reasonForContactOption;
+public class ContactUsDropdownOption implements WebElement {
 
-    public ContactUsDropDownOption(){};
+    private String dropdownOption;
+
+    public ContactUsDropdownOption(){};
+
+    public ContactUsDropdownOption(String dropdownOption) {
+        this.dropdownOption = dropdownOption;
+    };
 
     public String getSalutationOption(WebElement element) {
-        return salutationOption;
+        return dropdownOption;
     }
 
-    public String getBestTimeToReachOption(WebElement element) {
-        return bestTimeToReachOption;
-    }
-
-    public String getReasonForContactOption(WebElement element) {
-        return reasonForContactOption;
-    }
-
-    public void setSalutationOption(String salutationOption) {
-        this.salutationOption = salutationOption;
-    }
-
-    public void setBestTimeToReachOption(String bestTimeToReachOption) {
-        this.bestTimeToReachOption = bestTimeToReachOption;
-    }
-
-    public void setReasonForContactOption(String reasonForContactOption) {
-        this.reasonForContactOption = reasonForContactOption;
+    public void setDropdownOption(String dropdownOption) {
+        this.dropdownOption = dropdownOption;
     }
 
     @Override

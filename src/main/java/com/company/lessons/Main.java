@@ -439,7 +439,7 @@ public class Main {
         //    Для каждого слова подсчитать частоту его встречаемости. Слова, отличающиеся регистром букв, считать различными. Использовать класс HashMap.
 
         HashMapLearn hml = new HashMapLearn();
-        hml.printUniqueWordsAndCounts(hml.getUniqueWordsAndCounts());
+        hml.printUniqueWordsAndCounts(hml.getUniqueWordsAndCounts(), false);
 
 
         //Задание 3. Дано стихотворение в виде строки.
@@ -532,7 +532,7 @@ public class Main {
 //        lesson6();
 //        lesson7();
 //        lesson8();
-//        lesson9();
+        lesson9();
 //        lesson10();
 //        lesson11();
 

@@ -18,8 +18,8 @@ Feature: Check functionality of the Contact Us Form
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
     Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/public/contact-us"
-    Then I check that "First name" is shown as a placeholder for the First Name input field
-    And I check that "Last name" is shown as a placeholder for the Last Name input field
+    Then I check that "First Name" is shown as a placeholder for the First Name input field
+    And I check that "Last Name" is shown as a placeholder for the Last Name input field
     And I check that "Email" is shown as a placeholder for the Email input field
     And I check that "Email" is shown as a placeholder for the Alternative Email input field
     And I check that "Telephone" is shown as a placeholder for the Telephone input field
@@ -28,7 +28,9 @@ Feature: Check functionality of the Contact Us Form
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
     Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/public/contact-us"
-    Then I check the Salutation dropdown options
+    When I click the Salutation dropdown control
+    And I get the Salutation dropdown options as a list
+    Then I compare the actual options list with the expected options list
       |MR.|
       |MRS.|
       |MS.|
@@ -38,7 +40,9 @@ Feature: Check functionality of the Contact Us Form
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
     Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/public/contact-us"
-    Then I check the Best Time To Reach You dropdown options
+    When I click the Best Time To Reach You dropdown control
+    And I get the Best Time To Reach You dropdown options as a list
+    Then I compare the actual options list with the expected options list
       |MORNING 8AM - 12 PM EST|
       |AFTERNOON 12PM - 4PM EST|
       |EVENING 4PM - 8PM EST|
@@ -48,7 +52,9 @@ Feature: Check functionality of the Contact Us Form
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
     Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/public/contact-us"
-    Then I check the Reason For Contact dropdown options
+    When I click the Reason For Contact dropdown control
+    And I get the Reason For Contact dropdown options as a list
+    Then I compare the actual options list with the expected options list
       |QUESTION ABOUT A UNIT|
       |PREVENTATIVE MAINTENANCE|
       |BILLING|
@@ -62,6 +68,6 @@ Feature: Check functionality of the Contact Us Form
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
     Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/public/contact-us"
-    Then I check the Phone radio button is preselected
+    Then I check the Phone radio button is preselected by default
     Then I select the Email radio button
     Then I select the Phone radio button

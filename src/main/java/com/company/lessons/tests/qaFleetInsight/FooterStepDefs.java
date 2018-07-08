@@ -60,7 +60,7 @@ public class FooterStepDefs {
         String actualPhoneNumber = loginPageFooter.getLabelSupportPhone().substring(5);
         actualPhoneNumber = actualPhoneNumber.replaceAll("\\D", "");
         if (expectedPhoneNumber.equals(actualPhoneNumber)) {
-            System.out.println(String.format("Actual result matches Expected result: \nAR = ER: %s", expectedPhoneNumber));
+            System.out.println(String.format("Actual result matches Expected result: \nAR: %s; ER: %s", actualPhoneNumber, expectedPhoneNumber));
         } else {
             System.out.println(String.format("Actual result doesn't match Expected result: \nAR: %s; ER: %s", actualPhoneNumber, expectedPhoneNumber));
         }
@@ -70,7 +70,7 @@ public class FooterStepDefs {
     public void iCheckTheWordingOfLink(String expectedLinkName) {
         String actualLinkName = loginPageFooter.getNameLegalizationServices();
         if (expectedLinkName.equals(actualLinkName)) {
-            System.out.println(String.format("Actual result matches Expected result: \nAR = ER: %s", actualLinkName));
+            System.out.println(String.format("Actual result matches Expected result: \nAR: %s; ER: %s", actualLinkName, expectedLinkName));
         } else {
             System.out.println(String.format("Actual result doesn't match Expected result: \nAR: %s; ER: %s", actualLinkName, expectedLinkName));
         }
@@ -94,7 +94,7 @@ public class FooterStepDefs {
     public void iCheckCorrectnessOfTheCopyrightYear(String expectedCopyrightYear) {
         String actualCopyrightYear = loginPageFooter.getLabelCopyright();
         if (expectedCopyrightYear.equals(actualCopyrightYear)) {
-            System.out.println(String.format("Actual result matches Expected result: \nAR = ER: %s", actualCopyrightYear));
+            System.out.println(String.format("Actual result matches Expected result: \nAR: %s; ER: %s", actualCopyrightYear, expectedCopyrightYear));
         } else {
             System.out.println(String.format("Actual result doesn't match Expected result: \nAR: %s; ER: %s", actualCopyrightYear, expectedCopyrightYear));
         }
@@ -118,7 +118,7 @@ public class FooterStepDefs {
     public void iCheckCorrectnessOfTheWordingOfLink(String expectedLinkName) {
         String actualLinkName = loginPageFooter.getNameSafetyBulletins();
         if (expectedLinkName.equals(actualLinkName)) {
-            System.out.println(String.format("Actual result matches Expected result: \nAR = ER: %s", actualLinkName));
+            System.out.println(String.format("Actual result matches Expected result: \nAR: %s; ER: %s", actualLinkName, expectedLinkName));
         } else {
             System.out.println(String.format("Actual result doesn't match Expected result: \nAR: %s; ER: %s", actualLinkName, expectedLinkName));
         }

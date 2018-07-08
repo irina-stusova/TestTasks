@@ -4,6 +4,8 @@ package com.company.lessons.lesson9;
 //    Задание 2. Задана строка с текстом на английском языке. Выделить все различные слова.
 //    Для каждого слова подсчитать частоту его встречаемости. Слова, отличающиеся регистром букв, считать различными. Использовать класс HashMap.
 
+import org.apache.commons.logging.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,10 +26,18 @@ public class HashMapLearn {
         }
         return wordsUnique;
     }
-    public static void printUniqueWordsAndCounts(Map<String, Integer> map) {
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            System.out.println(String.format("Word: '%s', Count: '%d'", entry.getKey(), entry.getValue()));
+//    public static void printUniqueWordsAndCounts(Map<String, Integer> map) {
+//        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+//            System.out.println(String.format("Word: '%s', Count: '%d'", entry.getKey(), entry.getValue()));
+//        }
+//    }
+    public static <T, V> void printUniqueWordsAndCounts (Map<T, V> map, boolean printOnlyValue){
+        for (Map.Entry<T, V> entry: map.entrySet()){
+            if (printOnlyValue){
+                System.out.println(String.format("Count: '%d'", entry.getValue()));
+            } else {
+                System.out.println(String.format("Word: '%s', Count: '%d'", entry.getKey(), entry.getValue()));
+            }
         }
     }
-
 }

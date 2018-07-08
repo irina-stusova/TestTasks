@@ -3,6 +3,7 @@ package com.company.lessons.lesson9;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 //Задание 3. Дано стихотворение в виде строки.
 // Занести стихотворение в список (разделитель символ абзаца \n).
@@ -30,11 +31,17 @@ public class Patter {
         return list;
     }
 
-    public static void printListOfStringsSorted(ArrayList<String> list) {
-        for (String s : list) {
-            System.out.println(s);
+//    public static void printListOfStringsSorted(ArrayList<String> list) {
+//        for (String s : list) {
+//            System.out.println(s);
+//        }
+//    }
+
+    public static <T> void printListOfStringsSorted(ArrayList<T> list) {
+        for (T l : list) {
+            System.out.println(l);
         }
     }
-
 }
+
 

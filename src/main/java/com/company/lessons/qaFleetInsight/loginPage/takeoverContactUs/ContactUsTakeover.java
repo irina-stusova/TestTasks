@@ -26,10 +26,14 @@ public class ContactUsTakeover {
     private static final String PLACEHOLDER_EMAIL_XPATH = "//input[@name='email'][@placeholder]";
     private static final String PLACEHOLDER_ALTERNATIVE_EMAIL_XPATH = "//input[@name='emailAlternate'][@placeholder]";
     private static final String PLACEHOLDER_TELEPHONE_XPATH = "//input[@name='phone'][@placeholder]";
-    //DROP DOWNS
+    //DROPDOWNS OPTIONS
     private static final String DROPDOWN_OPTION_SALUTATION_XPATH = "//dropdown-list//ul[@aria-labelledby='combobox__1']/li"; /*/li[*]*/
     private static final String DROPDOWN_OPTION_BEST_TIME_TO_REACH_XPATH = "//dropdown-list//ul[@aria-labelledby='combobox__2']/li"; /*/li[*]*/
     private static final String DROPDOWN_OPTION_REASON_FOR_CONTACT_XPATH = "//dropdown-list//ul[@aria-labelledby='combobox__3']/li"; /*/li[*]*/
+    //DROPDOWNS CONTROLS
+    private static final String DROPDOWN_CONTROL_SALUTATION_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__1']";
+    private static final String DROPDOWN_CONTROL_BEST_TIME_TO_REACH_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__2']";
+    private static final String DROPDOWN_CONTROL_REASON_FOR_CONTACT_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__3']";
     //RADIO BUTTONS
     private static final String RADIO_BUTTON_PHONE_TYPE_NAME = "typePhone";
     private static final String RADIO_BUTTON_EMAIL_TYPE_NAME = "typeMail";
@@ -236,6 +240,18 @@ public class ContactUsTakeover {
 
     public By dropdownOptionReasonForContact() {
         return By.xpath(DROPDOWN_OPTION_REASON_FOR_CONTACT_XPATH);
+    }
+
+    public By dropdownControlSalutation() {
+        return By.xpath(DROPDOWN_CONTROL_SALUTATION_XPATH);
+    }
+
+    public By dropdownControlBestTime() {
+        return By.xpath(DROPDOWN_CONTROL_BEST_TIME_TO_REACH_XPATH);
+    }
+
+    public By dropdownControlContactReason() {
+        return By.xpath(DROPDOWN_CONTROL_REASON_FOR_CONTACT_XPATH);
     }
 
     public By radioButtonPhone() {
