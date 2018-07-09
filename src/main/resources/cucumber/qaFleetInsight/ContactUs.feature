@@ -1,4 +1,5 @@
 Feature: Check functionality of the Contact Us Form
+
   Scenario: I open the Contact Us Form and check correctness of service phone numbers
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
@@ -31,10 +32,10 @@ Feature: Check functionality of the Contact Us Form
     When I click the Salutation dropdown control
     And I get the Salutation dropdown options as a list
     Then I compare the actual options list with the expected options list
-      |MR.|
-      |MRS.|
-      |MS.|
-      |DR.|
+      | MR.  |
+      | MRS. |
+      | MS.  |
+      | DR.  |
 
   Scenario: I open the Contact Us Form and check options of the Best Time To Reach You dropdown
     When I open url "https://qa.fleetinsight.com"
@@ -43,10 +44,10 @@ Feature: Check functionality of the Contact Us Form
     When I click the Best Time To Reach You dropdown control
     And I get the Best Time To Reach You dropdown options as a list
     Then I compare the actual options list with the expected options list
-      |MORNING 8AM - 12 PM EST|
-      |AFTERNOON 12PM - 4PM EST|
-      |EVENING 4PM - 8PM EST|
-      |ANYTIME 8AM - 8PM EST|
+      | MORNING 8AM - 12 PM EST  |
+      | AFTERNOON 12PM - 4PM EST |
+      | EVENING 4PM - 8PM EST    |
+      | ANYTIME 8AM - 8PM EST    |
 
   Scenario: I open the Contact Us Form and check options of the Reason For Contact dropdown
     When I open url "https://qa.fleetinsight.com"
@@ -55,14 +56,14 @@ Feature: Check functionality of the Contact Us Form
     When I click the Reason For Contact dropdown control
     And I get the Reason For Contact dropdown options as a list
     Then I compare the actual options list with the expected options list
-      |QUESTION ABOUT A UNIT|
-      |PREVENTATIVE MAINTENANCE|
-      |BILLING|
-      |24/7 ROAD SERVICE|
-      |SAFETY|
-      |FUEL FINDER|
-      |OTHER INQUIRY|
-      |FEEDBACK|
+      | QUESTION ABOUT A UNIT    |
+      | PREVENTATIVE MAINTENANCE |
+      | BILLING                  |
+      | 24/7 ROAD SERVICE        |
+      | SAFETY                   |
+      | FUEL FINDER              |
+      | OTHER INQUIRY            |
+      | FEEDBACK                 |
 
   Scenario: I open the Contact Us Form and check ability to toggle between the Contact Types
     When I open url "https://qa.fleetinsight.com"

@@ -18,9 +18,6 @@ import java.util.List;
 public class ContactUsStepDefs {
     private ContactUsTakeover contactUsTakeover = new ContactUsTakeover();
     List<ContactUsDropdownOption> actualOptionsList = new ArrayList<>();
-    ContactUsDropdownOption option = new ContactUsDropdownOption();
-//    List<BestTimeDropdownOption> actualOptionsList2 = new ArrayList<>();
-//    List<ContactReasonDropdownOption> actualOptionsList3 = new ArrayList<>();
 
     @Then("^I check correctness of the Customer Service phone \"([^\"]*)\"$")
     public void iCheckCorrectnessOfTheCustomerServicePhone(String expectedPhoneNumber) {
@@ -154,11 +151,58 @@ public class ContactUsStepDefs {
 
     @And("^I get the Salutation dropdown options as a list$")
     public List<ContactUsDropdownOption> iGetTheSalutationDropdownOptionsAsAList() {
+
         String block = ".//dropdown-list//ul[@aria-labelledby='combobox__1']/li";
         String block1 = block + "[%s]";
         int count = Browser.findElements(By.xpath(block)).size();
 
         for (int i = 1; i <= count; i++) {
+            ContactUsDropdownOption option = new ContactUsDropdownOption();
+            option.setDropdownOption(Browser.findElement(By.xpath(String.format(block1, i))).getText());
+            actualOptionsList.add(option);
+        }
+        return actualOptionsList;
+    }
+
+    @When("^I click the Best Time To Reach You dropdown control$")
+    public void iClickTheBestTimeToReachYouDropdownControl() {
+        By dropdownControlBestTime = contactUsTakeover.dropdownControlBestTime();
+        WebElement webElement = Browser.findElement(dropdownControlBestTime);
+        Browser.getInst().click(dropdownControlBestTime, webElement);
+    }
+
+    @And("^I get the Best Time To Reach You dropdown options as a list$")
+    public List<ContactUsDropdownOption> iGetTheBestTimeToReachYouDropdownOptionsAsAList() {
+
+        String block = ".//dropdown-list//ul[@aria-labelledby='combobox__2']/li";
+        String block1 = block + "[%s]";
+        int count = Browser.findElements(By.xpath(block)).size();
+
+        for (int i = 1; i <= count; i++) {
+            ContactUsDropdownOption option = new ContactUsDropdownOption();
+            option.setDropdownOption(Browser.findElement(By.xpath(String.format(block1, i))).getText());
+            actualOptionsList.add(option);
+        }
+        return actualOptionsList;
+    }
+
+
+    @When("^I click the Reason For Contact dropdown control$")
+    public void iClickTheReasonForContactDropdownControl() {
+        By dropdownControlContactReason = contactUsTakeover.dropdownControlContactReason();
+        WebElement webElement = Browser.findElement(dropdownControlContactReason);
+        Browser.getInst().click(dropdownControlContactReason, webElement);
+    }
+
+    @And("^I get the Reason For Contact dropdown options as a list$")
+    public List<ContactUsDropdownOption> iGetTheReasonForContactDropdownOptionsAsAList() {
+
+        String block = ".//dropdown-list//ul[@aria-labelledby='combobox__3']/li";
+        String block1 = block + "[%s]";
+        int count = Browser.findElements(By.xpath(block)).size();
+
+        for (int i = 1; i <= count; i++) {
+            ContactUsDropdownOption option = new ContactUsDropdownOption();
             option.setDropdownOption(Browser.findElement(By.xpath(String.format(block1, i))).getText());
             actualOptionsList.add(option);
         }
@@ -168,6 +212,13 @@ public class ContactUsStepDefs {
     @Then("^I compare the actual options list with the expected options list$")
     public void iCompareTheActualOptionsListWithTheExpectedOptionsList(DataTable table) {
         List<DataTableRow> expectedOptionsList = table.getGherkinRows();
+//        this.actualOptionsList = actualOptionsList;
+        List<Str>exp=table;
+        actualOptionsList.sort(ASC);
+        exp.sort(ASC);
+//        actualOptionsList.equals(exp);
+                Assert.asertEqual(actualOptionsList,exp,
+                        String.format("Act list is not equal to exp. Act %s",))
         if ((actualOptionsList.size() == expectedOptionsList.size()) && (actualOptionsList.retainAll(expectedOptionsList))) {
             System.out.println("\nAR matches ER");
             System.out.println("\nActual Dropdown Options List:");
@@ -202,47 +253,6 @@ public class ContactUsStepDefs {
                 System.out.println();
             }
         }
-    }
-
-    @When("^I click the Best Time To Reach You dropdown control$")
-    public void iClickTheBestTimeToReachYouDropdownControl() {
-        By dropdownControlBestTime = contactUsTakeover.dropdownControlBestTime();
-        WebElement webElement = Browser.findElement(dropdownControlBestTime);
-        Browser.getInst().click(dropdownControlBestTime, webElement);
-    }
-
-    @And("^I get the Best Time To Reach You dropdown options as a list$")
-    public List<ContactUsDropdownOption> iGetTheBestTimeToReachYouDropdownOptionsAsAList() {
-        String block = ".//dropdown-list//ul[@aria-labelledby='combobox__2']/li";
-        String block1 = block + "[%s]";
-        int count = Browser.findElements(By.xpath(block)).size();
-
-        for (int i = 1; i <= count; i++) {
-            option.setDropdownOption(Browser.findElement(By.xpath(String.format(block1, i))).getText());
-            actualOptionsList.add(option);
-        }
-        return actualOptionsList;
-    }
-
-
-    @When("^I click the Reason For Contact dropdown control$")
-    public void iClickTheReasonForContactDropdownControl() {
-        By dropdownControlContactReason = contactUsTakeover.dropdownControlContactReason();
-        WebElement webElement = Browser.findElement(dropdownControlContactReason);
-        Browser.getInst().click(dropdownControlContactReason, webElement);
-    }
-
-    @And("^I get the Reason For Contact dropdown options as a list$")
-    public List<ContactUsDropdownOption> iGetTheReasonForContactDropdownOptionsAsAList() {
-        String block = ".//dropdown-list//ul[@aria-labelledby='combobox__3']/li";
-        String block1 = block + "[%s]";
-        int count = Browser.findElements(By.xpath(block)).size();
-
-        for (int i = 1; i <= count; i++) {
-            option.setDropdownOption(Browser.findElement(By.xpath(String.format(block1, i))).getText());
-            actualOptionsList.add(option);
-        }
-        return actualOptionsList;
     }
 
     @Then("^I check the Phone radio button is preselected by default$")
