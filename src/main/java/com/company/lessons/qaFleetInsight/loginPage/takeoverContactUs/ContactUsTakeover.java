@@ -26,10 +26,6 @@ public class ContactUsTakeover {
     private static final String PLACEHOLDER_EMAIL_XPATH = "//input[@name='email'][@placeholder]";
     private static final String PLACEHOLDER_ALTERNATIVE_EMAIL_XPATH = "//input[@name='emailAlternate'][@placeholder]";
     private static final String PLACEHOLDER_TELEPHONE_XPATH = "//input[@name='phone'][@placeholder]";
-    //DROPDOWNS OPTIONS
-    private static final String DROPDOWN_OPTION_SALUTATION_XPATH = "//dropdown-list//ul[@aria-labelledby='combobox__1']/li"; /*/li[*]*/
-    private static final String DROPDOWN_OPTION_BEST_TIME_TO_REACH_XPATH = "//dropdown-list//ul[@aria-labelledby='combobox__2']/li"; /*/li[*]*/
-    private static final String DROPDOWN_OPTION_REASON_FOR_CONTACT_XPATH = "//dropdown-list//ul[@aria-labelledby='combobox__3']/li"; /*/li[*]*/
     //DROPDOWNS CONTROLS
     private static final String DROPDOWN_CONTROL_SALUTATION_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__1']";
     private static final String DROPDOWN_CONTROL_BEST_TIME_TO_REACH_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__2']";
@@ -115,18 +111,6 @@ public class ContactUsTakeover {
         return Browser.findElement(placeholderTelephone()).getAttribute("placeholder");
     }
 
-    public String getDropdownOptionSalutation() {
-        return Browser.getInst().getText(dropdownOptionSalutation());
-    }
-
-    public String getDropdownOptionBestTimeToReach() {
-        return Browser.getInst().getText(dropdownOptionBestTimeToReach());
-    }
-
-    public String getDropdownOptionReasonForContact() {
-        return Browser.getInst().getText(dropdownOptionReasonForContact());
-    }
-
     //SETTERs
     public void setInputFirstName(String firstName) {
         Browser.getInst().sendQuery(inputFirstName(), firstName);
@@ -146,19 +130,6 @@ public class ContactUsTakeover {
 
     public void setInputTelephone(String telephone) {
         Browser.getInst().sendQuery(inputTelephone(), telephone);
-    }
-
-    //???
-    public void setSalutation(String salutation) {
-        Browser.getInst().sendQuery(dropdownOptionSalutation(), salutation);
-    }
-
-    public void setBestTimeToReach(String timeToReach) {
-        Browser.getInst().sendQuery(dropdownOptionBestTimeToReach(), timeToReach);
-    }
-
-    public void setReasonForContact(String reason) {
-        Browser.getInst().sendQuery(dropdownOptionReasonForContact(), reason);
     }
 
     //BY
@@ -228,18 +199,6 @@ public class ContactUsTakeover {
 
     public By placeholderTelephone() {
         return By.xpath(PLACEHOLDER_TELEPHONE_XPATH);
-    }
-
-    public By dropdownOptionSalutation() {
-        return By.xpath(DROPDOWN_OPTION_SALUTATION_XPATH);
-    }
-
-    public By dropdownOptionBestTimeToReach() {
-        return By.xpath(DROPDOWN_OPTION_BEST_TIME_TO_REACH_XPATH);
-    }
-
-    public By dropdownOptionReasonForContact() {
-        return By.xpath(DROPDOWN_OPTION_REASON_FOR_CONTACT_XPATH);
     }
 
     public By dropdownControlSalutation() {
