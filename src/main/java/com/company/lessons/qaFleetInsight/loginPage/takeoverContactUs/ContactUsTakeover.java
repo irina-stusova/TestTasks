@@ -18,18 +18,12 @@ public class ContactUsTakeover {
     private static final String INPUT_ALTERNATIVE_EMAIL_NAME = "emailAlternate";
     private static final String INPUT_TELEPHONE_NAME = "phone";
     //PLACEHOLDERS
-    private static final String PLACEHOLDER_SALUTATION_ID = "combobox__1";
-    private static final String PLACEHOLDER_BEST_TIME_TO_REACH_ID = "combobox__2";
-    private static final String PLACEHOLDER_REASON_FOR_CONTACT_ID = "combobox__3";
-    private static final String PLACEHOLDER_FIRST_NAME_XPATH = "//input[@name='firstName'][@placeholder]";
-    private static final String PLACEHOLDER_LAST_NAME_XPATH = "//input[@name='lastName'][@placeholder]";
-    private static final String PLACEHOLDER_EMAIL_XPATH = "//input[@name='email'][@placeholder]";
-    private static final String PLACEHOLDER_ALTERNATIVE_EMAIL_XPATH = "//input[@name='emailAlternate'][@placeholder]";
-    private static final String PLACEHOLDER_TELEPHONE_XPATH = "//input[@name='phone'][@placeholder]";
+    public static final String DROPDOWN_SALUTATION_ID = "combobox__1";
+    public static final String DROPDOWN_BEST_TIME_TO_REACH_ID = "combobox__2";
+    public static final String DROPDOWN_REASON_FOR_CONTACT_ID = "combobox__3";
+    private static final String PLACEHOLDER_INPUT_FIELD_XPATH = "//input[@name='%s'][@placeholder]";
     //DROPDOWNS CONTROLS
-    private static final String DROPDOWN_CONTROL_SALUTATION_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__1']";
-    private static final String DROPDOWN_CONTROL_BEST_TIME_TO_REACH_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__2']";
-    private static final String DROPDOWN_CONTROL_REASON_FOR_CONTACT_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='combobox__3']";
+    private static final String DROPDOWN_CONTROL_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='%s']";
     //RADIO BUTTONS
     private static final String RADIO_BUTTON_PHONE_TYPE_NAME = "typePhone";
     private static final String RADIO_BUTTON_EMAIL_TYPE_NAME = "typeMail";
@@ -79,36 +73,12 @@ public class ContactUsTakeover {
         return Browser.getInst().getText(inputTelephone());
     }
 
-    public String getPlaceholderSalutation() {
-        return Browser.findElement(placeholderSalutation()).getAttribute("value");
+    public String getDropdownPlaceholder(String dropdownId) {
+        return Browser.findElement(placeholderDropdown(dropdownId)).getAttribute("value");
     }
 
-    public String getPlaceholderBestTimeToReach() {
-        return Browser.findElement(placeholderBestTimeToReach()).getAttribute("value");
-    }
-
-    public String getPlaceholderReasonForContact() {
-        return Browser.findElement(placeholderReasonForContact()).getAttribute("value");
-    }
-
-    public String getPlaceholderFirstName() {
-        return Browser.findElement(placeholderFirstName()).getAttribute("placeholder");
-    }
-
-    public String getPlaceholderLastName() {
-        return Browser.findElement(placeholderLastName()).getAttribute("placeholder");
-    }
-
-    public String getPlaceholderEmail() {
-        return Browser.findElement(placeholderEmail()).getAttribute("placeholder");
-    }
-
-    public String getPlaceholderAlternativeEmail() {
-        return Browser.findElement(placeholderEmailAlternative()).getAttribute("placeholder");
-    }
-
-    public String getPlaceholderTelephone() {
-        return Browser.findElement(placeholderTelephone()).getAttribute("placeholder");
+    public String getInputFieldPlaceholder(String placeholderName) {
+        return Browser.findElement(placeholderInputField(placeholderName)).getAttribute("placeholder");
     }
 
     //SETTERs
@@ -169,48 +139,16 @@ public class ContactUsTakeover {
         return By.name(INPUT_TELEPHONE_NAME);
     }
 
-    public By placeholderSalutation() {
-        return By.id(PLACEHOLDER_SALUTATION_ID);
+    public By placeholderDropdown(String dropdownId) {
+        return By.xpath(String.format(DROPDOWN_CONTROL_XPATH, dropdownId));
     }
 
-    public By placeholderBestTimeToReach() {
-        return By.id(PLACEHOLDER_BEST_TIME_TO_REACH_ID);
+    public By placeholderInputField(String placeholderName) {
+        return By.xpath(String.format(PLACEHOLDER_INPUT_FIELD_XPATH, placeholderName));
     }
 
-    public By placeholderReasonForContact() {
-        return By.id(PLACEHOLDER_REASON_FOR_CONTACT_ID);
-    }
-
-    public By placeholderFirstName() {
-        return By.xpath(PLACEHOLDER_FIRST_NAME_XPATH);
-    }
-
-    public By placeholderLastName() {
-        return By.xpath(PLACEHOLDER_LAST_NAME_XPATH);
-    }
-
-    public By placeholderEmail() {
-        return By.xpath(PLACEHOLDER_EMAIL_XPATH);
-    }
-
-    public By placeholderEmailAlternative() {
-        return By.xpath(PLACEHOLDER_ALTERNATIVE_EMAIL_XPATH);
-    }
-
-    public By placeholderTelephone() {
-        return By.xpath(PLACEHOLDER_TELEPHONE_XPATH);
-    }
-
-    public By dropdownControlSalutation() {
-        return By.xpath(DROPDOWN_CONTROL_SALUTATION_XPATH);
-    }
-
-    public By dropdownControlBestTime() {
-        return By.xpath(DROPDOWN_CONTROL_BEST_TIME_TO_REACH_XPATH);
-    }
-
-    public By dropdownControlContactReason() {
-        return By.xpath(DROPDOWN_CONTROL_REASON_FOR_CONTACT_XPATH);
+    public By dropdownControl(String dropdownId) {
+        return By.xpath(String.format(DROPDOWN_CONTROL_XPATH, dropdownId));
     }
 
     public By radioButtonPhone() {

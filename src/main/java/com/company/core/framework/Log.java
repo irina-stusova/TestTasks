@@ -8,7 +8,7 @@
 //import java.util.logging.Logger;
 //
 //public class Log {
-//    private static org.apache.log4j.Logger log;
+//    private static Logger log;
 //    private static String scenarioName = "";
 //    private static final String FILE_APPENDER_NAME = "file";
 //    private static final String BASE_LOG_PATH;
@@ -17,7 +17,7 @@
 //    public static String logFileName;
 //
 //    static {
-//        Appender appender = org.apache.log4j.Logger.getRootLogger().getAppender(FILE_APPENDER_NAME);
+//        Appender appender = Logger.getRootLogger().getAppender(FILE_APPENDER_NAME);
 //        if (appender instanceof FileAppender) {
 //            FileAppender fileAppender = ((FileAppender) appender);
 //            String oldFileName = fileAppender.getFile();
@@ -33,25 +33,25 @@
 //
 //    public static void info(Object message) {
 //        String name = getCallerClassName();
-//        org.apache.log4j.Logger log = getLog(name);
+//        Logger log = getLog(name);
 //        log.info(message);
 //    }
 //
 //    public static void error(Object message) {
 //        String name = getCallerClassName();
-//        org.apache.log4j.Logger log = getLog(name);
+//        Logger log = getLog(name);
 //        log.error(message);
 //    }
 //
 //    public static void warn(Object message) {
 //        String name = getCallerClassName();
-//        org.apache.log4j.Logger log = getLog(name);
+//        Logger log = getLog(name);
 //        log.warn(message);
 //    }
 //
 //    public static void debug(String message) {
 //        String name = getCallerClassName();
-//        org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(name);
+//        Logger log = Logger.getLogger(name);
 //        log.debug(message);
 //    }
 //
@@ -71,7 +71,7 @@
 //    }
 //
 //    private static void changeFileNameInFileAppenderOfRootLogger(String scenarioName) {
-//        Appender appender = org.apache.log4j.Logger.getRootLogger().getAppender(FILE_APPENDER_NAME);
+//        Appender appender = Logger.getRootLogger().getAppender(FILE_APPENDER_NAME);
 //        if (appender instanceof FileAppender) {
 //            FileAppender fileAppender = ((FileAppender) appender);
 //            String fileName = new File(FilenameUtils.concat(BASE_LOG_PATH, scenarioName + "." + LOG_EXTENSION)).getAbsolutePath();
@@ -94,12 +94,12 @@
 //        return FileHelper.normalizeFileName(logFileName);
 //    }
 //
-//    private static org.apache.log4j.Logger getLog(String name) {
+//    private static Logger getLog(String name) {
 //        String scenarioNameNew = getLogFileName();
 //        if (!scenarioName.equals(scenarioNameNew)) {
 //            scenarioName = scenarioNameNew;
 //            intializeLogger();
 //        }
-//        return org.apache.log4j.Logger.getLogger(name);
+//        return Logger.getLogger(name);
 //    }
 //}

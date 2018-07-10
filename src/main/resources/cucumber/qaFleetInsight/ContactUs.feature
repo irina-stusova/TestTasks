@@ -14,23 +14,23 @@ Feature: Check functionality of the Contact Us Form
   Scenario: I open the Contact Us Form and check that "SELECT" is shown as a placeholder for the Salutation, Best Time To Reach You, Reason For Contact dropdowns
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
-    Then I check that "SELECT" is shown as a placeholder for the Salutation dropdown
-    And I check that "SELECT" is shown as a placeholder for the Best Time To Reach You dropdown
-    And I check that "SELECT" is shown as a placeholder for the Reason For Contact dropdown
+    Then I check that "SELECT" is shown as a placeholder for the "SALUTATION" dropdown
+    Then I check that "SELECT" is shown as a placeholder for the "Best Time To Reach you?" dropdown
+    Then I check that "SELECT" is shown as a placeholder for the "Reason for contact?" dropdown
 
   Scenario: I open the Contact Us Form and check the placeholders shown for Input fields
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
-    Then I check that "First name" is shown as a placeholder for the First Name input field
-    And I check that "Last name" is shown as a placeholder for the Last Name input field
-    And I check that "Email" is shown as a placeholder for the Email input field
-    And I check that "Email" is shown as a placeholder for the Alternative Email input field
-    And I check that "Telephone" is shown as a placeholder for the Telephone input field
+    Then I check that "First name" is shown as a placeholder for the "firstName" input field
+    And I check that "Last name" is shown as a placeholder for the "lastName" input field
+    And I check that "Email" is shown as a placeholder for the "email" input field
+    And I check that "Email" is shown as a placeholder for the "emailAlternate" input field
+    And I check that "Telephone" is shown as a placeholder for the "phone" input field
 
   Scenario: I open the Contact Us Form and check options of the Salutation dropdown
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
-    When I click the Salutation dropdown control
+    When I click the dropdown control for "combobox__1"
     And I get dropdown options as a list using locator ".//ul[@aria-labelledby='combobox__1']/li[%s]"
     Then I compare the actual options list with the expected options list
       | MR.  |
@@ -41,7 +41,7 @@ Feature: Check functionality of the Contact Us Form
   Scenario: I open the Contact Us Form and check options of the Best Time To Reach You dropdown
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
-    When I click the Best Time To Reach You dropdown control
+    When I click the dropdown control for "combobox__2"
     And I get dropdown options as a list using locator ".//ul[@aria-labelledby='combobox__2']/li[%s]"
     Then I compare the actual options list with the expected options list
       | MORNING 8AM - 12 PM EST  |
@@ -52,7 +52,7 @@ Feature: Check functionality of the Contact Us Form
   Scenario: I open the Contact Us Form and check options of the Reason For Contact dropdown
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
-    When I click the Reason For Contact dropdown control
+    When I click the dropdown control for "combobox__3"
     And I get dropdown options as a list using locator ".//ul[@aria-labelledby='combobox__3']/li[%s]"
     Then I compare the actual options list with the expected options list
       | QUESTION ABOUT A UNIT    |

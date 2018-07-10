@@ -2,64 +2,50 @@ package com.company.lessons.qaFleetInsight.loginPage.takeoverContactUs;
 
 import com.company.lessons.browser.Browser;
 import org.openqa.selenium.*;
+
 import java.util.List;
 
 public class ContactUsDropdownOption implements WebElement {
 
     private String dropdownOption;
-    //DROPDOWNS OPTIONS
-    private static final String DROPDOWN_OPTION_SALUTATION_XPATH = ".//ul[@aria-labelledby='combobox__1']/li";
-    private static final String DROPDOWN_OPTION_BEST_TIME_TO_REACH_XPATH = ".//ul[@aria-labelledby='combobox__2']/li";
-    private static final String DROPDOWN_OPTION_REASON_FOR_CONTACT_XPATH = ".//ul[@aria-labelledby='combobox__3']/li";
 
-    public ContactUsDropdownOption(){};
+    private static final String DROPDOWN_SALUTATION_ID = "combobox__1";
+    private static final String DROPDOWN_BEST_TIME_TO_REACH_ID = "combobox__2";
+    private static final String DROPDOWN_REASON_FOR_CONTACT_ID = "combobox__3";
+    private static final String DROPDOWN_OPTION_XPATH = ".//ul[@aria-labelledby='%s']/li";
+
+
+    public ContactUsDropdownOption() {
+    };
 
     public ContactUsDropdownOption(String dropdownOption) {
         this.dropdownOption = dropdownOption;
-    };
+    }
+
+    ;
 
     //GETTERs
     public String getDropdownOption(WebElement element) {
         return dropdownOption;
     }
-    public String getDropdownOptionSalutation() {
-        return Browser.getInst().getText(dropdownOptionSalutation());
-    }
-    public String getDropdownOptionBestTimeToReach() {
-        return Browser.getInst().getText(dropdownOptionBestTimeToReach());
-    }
-    public String getDropdownOptionReasonForContact() {
-        return Browser.getInst().getText(dropdownOptionReasonForContact());
+
+    public String getDropdownOption(String dropdownId) {
+        return Browser.getInst().getText(dropdownOption(dropdownId));
     }
 
     //SETTERs
     public void setDropdownOption(String dropdownOption) {
         this.dropdownOption = dropdownOption;
     }
+
     //???
-    public void setSalutation(String salutation) {
-        Browser.getInst().sendQuery(dropdownOptionSalutation(), salutation);
-    }
-
-    public void setBestTimeToReach(String timeToReach) {
-        Browser.getInst().sendQuery(dropdownOptionBestTimeToReach(), timeToReach);
-    }
-
-    public void setReasonForContact(String reason) {
-        Browser.getInst().sendQuery(dropdownOptionReasonForContact(), reason);
+    public void setDrodownOption(String dropdownId, String dropdownOption) {
+        Browser.getInst().sendQuery(dropdownOption(dropdownId), dropdownOption);
     }
 
     //BY
-    public By dropdownOptionSalutation() {
-        return By.xpath(DROPDOWN_OPTION_SALUTATION_XPATH);
-    }
-
-    public By dropdownOptionBestTimeToReach() {
-        return By.xpath(DROPDOWN_OPTION_BEST_TIME_TO_REACH_XPATH);
-    }
-
-    public By dropdownOptionReasonForContact() {
-        return By.xpath(DROPDOWN_OPTION_REASON_FOR_CONTACT_XPATH);
+    public By dropdownOption(String dropdownId) {
+        return By.xpath(String.format(DROPDOWN_OPTION_XPATH, dropdownId));
     }
 
     @Override

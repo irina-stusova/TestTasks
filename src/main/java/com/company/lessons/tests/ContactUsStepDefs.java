@@ -9,6 +9,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,73 +31,37 @@ public class ContactUsStepDefs {
         Assert.assertEquals(actualPhoneNumber, expectedPhoneNumber, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPhoneNumber, expectedPhoneNumber));
     }
 
-    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the Salutation dropdown$")
-    public void iCheckThatIsShownAsAPlaceholderForTheSalutationDropdown(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderSalutation().toUpperCase();
+    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the \"([^\"]*)\" dropdown$")
+    public void iCheckThatIsShownAsAPlaceholderForTheDropdown(String expectedPlaceholder, String dropdownName) {
+        String dropdownId = "";
+        switch (dropdownName) {
+            case "SALUTATION":
+                dropdownId = ContactUsTakeover.DROPDOWN_SALUTATION_ID;
+                break;
+            case "Best Time To Reach you?":
+                dropdownId = ContactUsTakeover.DROPDOWN_BEST_TIME_TO_REACH_ID;
+                break;
+            case "Reason for contact?":
+                dropdownId = ContactUsTakeover.DROPDOWN_REASON_FOR_CONTACT_ID;
+                break;
+            default:
+                throw new RuntimeException(String.format("No such dropdown name %s", dropdownName));
+        }
+        String actualPlaceholder = contactUsTakeover.getDropdownPlaceholder(dropdownId).toUpperCase();
         Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
     }
 
-    @And("^I check that \"([^\"]*)\" is shown as a placeholder for the Best Time To Reach You dropdown$")
-    public void iCheckThatIsShownAsAPlaceholderForTheBestTimeToReachYouDropdown(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderBestTimeToReach().toUpperCase();
+    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the \"([^\"]*)\" input field$")
+    public void iCheckThatIsShownAsAPlaceholderForTheInputField(String expectedPlaceholder, String placeholderName) {
+        String actualPlaceholder = contactUsTakeover.getInputFieldPlaceholder(placeholderName);
         Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
     }
 
-    @And("^I check that \"([^\"]*)\" is shown as a placeholder for the Reason For Contact dropdown$")
-    public void iCheckThatIsShownAsAPlaceholderForTheReasonForContactDropdown(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderReasonForContact().toUpperCase();
-        Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
-    }
-
-    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the First Name input field$")
-    public void iCheckThatIsShownAsAPlaceholderForTheFirstNameInputField(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderFirstName();
-        Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
-    }
-
-    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the Last Name input field$")
-    public void iCheckThatIsShownAsAPlaceholderForTheLastNameInputField(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderLastName();
-        Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
-    }
-
-    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the Email input field$")
-    public void iCheckThatIsShownAsAPlaceholderForTheEmailInputField(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderEmail();
-        Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
-    }
-
-    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the Alternative Email input field$")
-    public void iCheckThatIsShownAsAPlaceholderForTheAlternativeEmailInputField(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderAlternativeEmail();
-        Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
-    }
-
-    @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the Telephone input field$")
-    public void iCheckThatIsShownAsAPlaceholderForTheTelephoneInputField(String expectedPlaceholder) {
-        String actualPlaceholder = contactUsTakeover.getPlaceholderTelephone();
-        Assert.assertEquals(actualPlaceholder, expectedPlaceholder, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPlaceholder, expectedPlaceholder));
-    }
-
-    @When("^I click the Salutation dropdown control$")
-    public void iClickTheSalutationDropdownControl() {
-        By dropdownControlSalutation = contactUsTakeover.dropdownControlSalutation();
-        WebElement webElement = Browser.findElement(dropdownControlSalutation);
-        Browser.getInst().click(dropdownControlSalutation, webElement);
-    }
-
-    @When("^I click the Best Time To Reach You dropdown control$")
-    public void iClickTheBestTimeToReachYouDropdownControl() {
-        By dropdownControlBestTime = contactUsTakeover.dropdownControlBestTime();
-        WebElement webElement = Browser.findElement(dropdownControlBestTime);
-        Browser.getInst().click(dropdownControlBestTime, webElement);
-    }
-
-    @When("^I click the Reason For Contact dropdown control$")
-    public void iClickTheReasonForContactDropdownControl() {
-        By dropdownControlContactReason = contactUsTakeover.dropdownControlContactReason();
-        WebElement webElement = Browser.findElement(dropdownControlContactReason);
-        Browser.getInst().click(dropdownControlContactReason, webElement);
+    @When("^I click the dropdown control for \"([^\"]*)\"$")
+    public void iClickTheDropdownControl(String dropdownId) {
+        By dropdownControl = contactUsTakeover.dropdownControl(dropdownId);
+        WebElement webElement = Browser.findElement(dropdownControl);
+        Browser.getInst().click(dropdownControl, webElement);
     }
 
     @And("^I get dropdown options as a list using locator \"([^\"]*)\"$")
