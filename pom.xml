@@ -4,32 +4,395 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>com.penske</groupId>
     <artifactId>JavaLearningNew</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>JavaLearningNew</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <testng.xml>src/main/resources/products/testng.xml</testng.xml>
+        <cucumber.execution.results>${project.build.directory}/cucumber-results/</cucumber.execution.results>
+        <cucumber.final.report.dir>${project.build.directory}/report-json/</cucumber.final.report.dir>
+        <jira.login>505013554</jira.login>
+        <jira.pwd>Milana2608M</jira.pwd>
+        <jira.project.key>Fleet Insight</jira.project.key>
+        <jira.url>https://jira.penske.com</jira.url>
+        <zephyr-sync.version>0.0.10</zephyr-sync.version>
+        <selenium.version>3.11.0</selenium.version>
+        <ngwebdriver.version>1.0</ngwebdriver.version>
+        <testng.version>6.13.1</testng.version>
+        <cucumber.version>1.2.5</cucumber.version>
+        <log4j12.version>1.7.25</log4j12.version>
+        <rest-assured.version>3.1.0</rest-assured.version>
+        <google-guava.version>23.6-jre</google-guava.version>
+        <opencsv.version>4.0</opencsv.version>
+        <joda-time.version>2.9.9</joda-time.version>
+        <google-maps-services.version>0.2.3</google-maps-services.version>
+        <jasypt.version>1.9.2</jasypt.version>
+        <ojdbc7.version>12.1.0.2</ojdbc7.version>
+        <jt400.version>9.4</jt400.version>
+        <json.version>20180130</json.version>
+        <jackson-core.version>2.9.4</jackson-core.version>
+        <cucumber.jvm.parallel.version>5.0.0</cucumber.jvm.parallel.version>
+        <maven.surefire.version>2.21.0</maven.surefire.version>
+        <maven.failsafe.version>2.21.0</maven.failsafe.version>
+        <maven.cucumber.reporting.version>3.12.0</maven.cucumber.reporting.version>
+        <exec.maven.plugin.version>1.1.1</exec.maven.plugin.version>
+        <maven.fork.count>1</maven.fork.count>
+        <input.log4j.log.dir>${project.build.directory}/logs/</input.log4j.log.dir>
+        <output.log4j.log.dir>${project.build.directory}/final-log-file/</output.log4j.log.dir>
+        <maven.artifact.generation.phase>post-integration-test</maven.artifact.generation.phase>
+        <maven.failsafe.includes>**/TestNGRunner.class</maven.failsafe.includes>
+    </properties>
+
+    <!--<profile>-->
+        <!--<id>fleetinsight</id>-->
+        <!--<activation>-->
+            <!--<activeByDefault>false</activeByDefault>-->
+            <!--<property>-->
+                <!--<name>product</name>-->
+                <!--<value>fleetinsight</value>-->
+            <!--</property>-->
+        <!--</activation>-->
+        <!--<properties>-->
+            <!--<maven.failsafe.includes>**/FiTestNGRunner.class</maven.failsafe.includes>-->
+        <!--</properties>-->
+    <!--</profile>-->
+
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--&lt;!&ndash; define Java version for environment &ndash;&gt;-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<version>3.7.0</version>-->
+                <!--<configuration>-->
+                    <!--<source>1.8</source>-->
+                    <!--<target>1.8</target>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
+
     <build>
         <plugins>
+            <!-- define Java version for environment -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!--maven-surefire-plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <!--maven-failsafe-plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <executions>
+                    <execution>
+                        <id>run-parallel-tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <useSystemClassLoader>true</useSystemClassLoader>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <forkCount>${maven.fork.count}</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <argLine>-Xms512m</argLine>
+                    <argLine>-Xmx2048m</argLine>
+                    <includes>
+                        <include>${maven.failsafe.includes}</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <!--execute custom class method-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>kill-all-existed-webdrivers-before-tests</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <classpathScope>test</classpathScope>
+                            <mainClass>com.penske.core.framework.precondition.EnvironmentCleaner</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>kill-all-existed-webdrivers-after-tests</id>
+                        <phase>${maven.artifact.generation.phase}</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <classpathScope>test</classpathScope>
+                            <mainClass>com.penske.core.framework.precondition.EnvironmentCleaner</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>merge-cucumber-jsons-to-one-for-further-report</id>
+                        <phase>${maven.artifact.generation.phase}</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <classpathScope>test</classpathScope>
+                            <mainClass>com.penske.core.framework.collectors.report.ReportCollector</mainClass>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>input.json.dir</key>
+                                    <value>${cucumber.execution.results}</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>output.json.dir</key>
+                                    <value>${cucumber.final.report.dir}</value>
+                                </systemProperty>
+                            </systemProperties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>merge-log4j-log-files-into-one</id>
+                        <phase>${maven.artifact.generation.phase}</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <classpathScope>test</classpathScope>
+                            <mainClass>com.penske.core.framework.collectors.log.LogCollector</mainClass>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>input.log4j.log.dir</key>
+                                    <value>${input.log4j.log.dir}</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>output.log4j.log.dir</key>
+                                    <value>${output.log4j.log.dir}</value>
+                                </systemProperty>
+                            </systemProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- maven-cucumber-reporting -->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>${maven.cucumber.reporting.version}</version>
+                <executions>
+                    <execution>
+                        <id>cucumber-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>JavaLearningNew</projectName>
+                            <buildNumber>1</buildNumber>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <cucumberOutput>${cucumber.final.report.dir}</cucumberOutput>
+                            <checkBuildResult>false</checkBuildResult>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- to exclude empty jar file generation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <skipIfEmpty>true</skipIfEmpty>
+                </configuration>
+            </plugin>
+            <!-- to exclude jar file install -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.11.0</version>
+            <groupId>com.github.temyers</groupId>
+            <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+            <version>${cucumber.jvm.parallel.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>maven-cucumber-reporting</artifactId>
+            <version>${maven.cucumber.reporting.version}</version>
+        </dependency>
+
+        <!-- TEST NG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- CUCUMBER -->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ANGULAR SPECIFIC - protractor additions -->
+        <dependency>
+            <groupId>com.paulhammant</groupId>
+            <artifactId>ngwebdriver</artifactId>
+            <version>${ngwebdriver.version}</version>
+        </dependency>
+
+        <!-- slf4j for Logging-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${log4j12.version}</version>
+        </dependency>
+
+        <!-- Reporting -->
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>agent-java-cucumber</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <!-- Logger [log4j]-->
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>logger-java-log4j</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+        <!-- for testing API -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- for Function class supports jdk7-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google-guava.version}</version>
+        </dependency>
+
+        <!-- for parsing CSV files -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${opencsv.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-time.version}</version>
+        </dependency>
+
+        <!--Java client library for Google Maps API Web Services-->
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+            <version>${google-maps-services.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>lv.ctco.zephyr</groupId>
+            <artifactId>zephyr-sync-core</artifactId>
+            <version>0.0.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>${jasypt.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>io.github.bonigarcia</groupId>-->
+        <!--<artifactId>webdrivermanager</artifactId>-->
+        <!--<version>2.1.0</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.github.noraui</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>${ojdbc7.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.sf.jt400/jt400 -->
+        <dependency>
+            <groupId>net.sf.jt400</groupId>
+            <artifactId>jt400</artifactId>
+            <version>${jt400.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson-core.version}</version>
+        </dependency>
+
+        <!--ZIP-files creation-->
+        <dependency>
+            <groupId>org.zeroturnaround</groupId>
+            <artifactId>zt-zip</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-core</artifactId>
             <version>1.2.5</version>
         </dependency>
         <dependency>
@@ -38,69 +401,113 @@
             <version>1.2.5</version>
         </dependency>
         <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-picocontainer</artifactId>
-            <version>1.2.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.5</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>${joda-time.version}</version>
-        </dependency>
-        <!-- slf4j for Logging-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${log4j12.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.13.1</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.9.9</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>1.2.5</version>
         </dependency>
         <dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
             <version>1.9.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.paulhammant</groupId>
-            <artifactId>ngwebdriver</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.13.1</version>
-        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <!-- SELENIUM -->
+        <dependencies>
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-java</artifactId>
+                <version>${selenium.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--<dependencies>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-java</artifactId>-->
+            <!--<version>3.11.0</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>info.cukes</groupId>-->
+            <!--<artifactId>cucumber-testng</artifactId>-->
+            <!--<version>1.2.5</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>info.cukes</groupId>-->
+            <!--<artifactId>cucumber-java</artifactId>-->
+            <!--<version>1.2.5</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>info.cukes</groupId>-->
+            <!--<artifactId>cucumber-picocontainer</artifactId>-->
+            <!--<version>1.2.5</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.commons</groupId>-->
+            <!--<artifactId>commons-lang3</artifactId>-->
+            <!--<version>3.5</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/joda-time/joda-time &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>joda-time</groupId>-->
+            <!--<artifactId>joda-time</artifactId>-->
+            <!--<version>2.9.9</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.testng</groupId>-->
+            <!--<artifactId>testng</artifactId>-->
+            <!--<version>6.13.1</version>-->
+            <!--<scope>main</scope>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>junit</groupId>-->
+                    <!--<artifactId>junit</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>commons-io</groupId>-->
+            <!--<artifactId>commons-io</artifactId>-->
+            <!--<version>2.5</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>log4j</groupId>-->
+            <!--<artifactId>log4j</artifactId>-->
+            <!--<version>1.2.17</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.jasypt</groupId>-->
+            <!--<artifactId>jasypt</artifactId>-->
+            <!--<version>1.9.2</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.paulhammant</groupId>-->
+            <!--<artifactId>ngwebdriver</artifactId>-->
+            <!--<version>1.0</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+            <!--&lt;!&ndash;<groupId>org.testng</groupId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<artifactId>testng</artifactId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<version>6.13.1</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+    <!--</dependencies>-->
 </project>
