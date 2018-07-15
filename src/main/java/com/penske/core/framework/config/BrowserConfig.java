@@ -2,7 +2,7 @@ package com.penske.core.framework.config;
 
 public class BrowserConfig extends BaseConfig {
 
-    private static final String BROWSER_PROPERTIES_FILE = "src/test/resources/browser.properties";
+    private static final String BROWSER_PROPERTIES_FILE = "src/main/resources/browser.properties";
     private static BrowserConfig ourInstance = init();
 
     private static BrowserConfig init() {

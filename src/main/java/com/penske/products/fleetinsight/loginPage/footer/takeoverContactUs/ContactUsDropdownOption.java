@@ -1,4 +1,4 @@
-package com.penske.products.fleetinsight.loginPage.takeoverContactUs;
+package com.penske.products.fleetinsight.loginPage.footer.takeoverContactUs;
 
 import com.penske.core.framework.Browser;
 import org.openqa.selenium.*;

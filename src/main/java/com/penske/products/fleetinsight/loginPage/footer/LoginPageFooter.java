@@ -1,20 +1,20 @@
-package com.penske.products.fleetinsight.loginPage;
+package com.penske.products.fleetinsight.loginPage.footer;
 
 import com.penske.core.framework.Browser;
 import org.openqa.selenium.By;
 
 public class LoginPageFooter {
     private static final String LOGIN_PAGE_URL_IDENTIFIER = "https://qa.fleetinsight.com";
-    private static final String LINK_CONTACT_US_XPATH = "//div[@class='site-footer__container']//a[@href='/fiportal/public/contact-us']";
-    private static final String LINK_GOPENSKE_HREF = "//a[contains(text(), 'gopenske.com')]";
-    private static final String LINK_USED_TRUCKS_HREF = "//a[contains(text(), 'Used Trucks')]";
-    private static final String LINK_PENSKE_NEWS_HREF = "//a[contains(text(), 'Penske News')]";
+    public static final String LINK_CONTACT_US_XPATH = "//div[@class='site-footer__container']//a[@href='/fiportal/public/contact-us']";
+    public static final String LINK_GOPENSKE_HREF = "//a[contains(text(), 'gopenske.com')]";
+    public static final String LINK_USED_TRUCKS_HREF = "//a[contains(text(), 'Used Trucks')]";
+    public static final String LINK_PENSKE_NEWS_HREF = "//a[contains(text(), 'Penske News')]";
     private static final String LABEL_SUPPORT_PHONE_HREF = "//footer[@class='site-footer']//div[@class='site-footer__247-info']/h2";
     private static final String LABEL_COPYRIGHT_ID = "copyRight";
-    private static final String LINK_PRIVACY_POLICY_HREF = "//a[contains(text(), 'Privacy Policy')]";
-    private static final String LINK_TERMS_AND_CONDITIONS_HREF = "//a[contains(text(), 'Terms and Conditions')]";
-    private static final String LINK_LEGALIZATION_SERVICES_HREF = "//section[@class='site-footer__for-customers']//a[@href='https://www.pensketruckleasing.com/for-customers/legalization-services/']";
-    private static final String LINK_SAFETY_BULLETINS_HREF = "//section[@class='site-footer__for-customers']//a[@href='https://www.pensketruckleasing.com/for-customers/safety-bulletins/']";
+    public static final String LINK_PRIVACY_POLICY_HREF = "//a[contains(text(), 'Privacy Policy')]";
+    public static final String LINK_TERMS_AND_CONDITIONS_HREF = "//a[contains(text(), 'Terms and Conditions')]";
+    public static final String LINK_LEGALIZATION_SERVICES_HREF = "//section[@class='site-footer__for-customers']//a[@href='https://www.pensketruckleasing.com/for-customers/legalization-services/']";
+    public static final String LINK_SAFETY_BULLETINS_HREF = "//section[@class='site-footer__for-customers']//a[@href='https://www.pensketruckleasing.com/for-customers/safety-bulletins/']";
 
     public String getLoginPageUrlIdentifier() {
         return LOGIN_PAGE_URL_IDENTIFIER;

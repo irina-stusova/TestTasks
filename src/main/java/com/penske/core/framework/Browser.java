@@ -42,9 +42,9 @@ public class Browser {
         Browser chromeInstance = new Browser();
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, "src\\main\\resources\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 15);
         executor = (JavascriptExecutor) driver;
-        driver.manage().timeouts().implicitlyWait(3000L, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(15000L, TimeUnit.MILLISECONDS);
         return chromeInstance;
     }
 
@@ -136,7 +136,7 @@ public class Browser {
         return getAttribute(element, "innerText");
     }
 
-    public void sendQuery(By by, String query) {
+    public static void sendQuery(By by, String query) {
         findElement(by).sendKeys(query);
     }
 

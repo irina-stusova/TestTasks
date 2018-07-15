@@ -1,4 +1,4 @@
-package com.penske.products.fleetinsight.loginPage.takeoverContactUs;
+package com.penske.products.fleetinsight.loginPage.footer.takeoverContactUs;
 
 import org.openqa.selenium.By;
 
@@ -11,8 +11,9 @@ public class ContactUsTakeover {
     private static final String TITLE_TAKEOVER_XPATH = "//h1[@class='top-bar__head-text']";
     private static final String TITLE_FORM_XPATH = "//h2[@class='form-steps__page-title']";
     //PHONE NUMBERS
-    private static final String CUSTOMER_SERVICE_PHONE_XPATH = "//p[@phone-number-key='CUSTOMER_SERVICE']/span";
-    private static final String ROAD_ASSISTANCE_PHONE_XPATH = "//p[@phone-number-key='ROAD_ASSISTANCE']/span";
+    public static final String SERVICE_PHONE_XPATH = "//p[@phone-number-key='%s']/span";
+    public static final String CUSTOMER_SERVICE_PHONE_KEY = "CUSTOMER_SERVICE";
+    public static final String ROAD_ASSISTANCE_PHONE_KEY = "ROAD_ASSISTANCE";
     //INPUT FIELDS
     public static final String INPUT_FIRST_NAME_BY_NAME = "firstName";
     public static final String INPUT_LAST_NAME_BY_NAME = "lastName";
@@ -27,12 +28,13 @@ public class ContactUsTakeover {
     //DROPDOWNS CONTROLS
     private static final String DROPDOWN_CONTROL_XPATH = "//div[@class='custom-select__dropdown']/span/input[@id='%s']";
     //RADIO BUTTONS
-    private static final String RADIO_BUTTON_PHONE_TYPE_NAME = "typePhone";
-    private static final String RADIO_BUTTON_EMAIL_TYPE_NAME = "typeMail";
+    public static final String RADIO_BUTTON_NAME = "//input[@type='radio'][@name='%s']";
+    public static final String RADIO_BUTTON_PHONE_TYPE_NAME = "typePhone";
+    public static final String RADIO_BUTTON_EMAIL_TYPE_NAME = "typeMail";
     //BUTTONS
-    private static final String BUTTON_CLOSE_XPATH = "//button[@type='button']/span[@svg-title='close']";
-    private static final String BUTTON_BACK_XPATH = "//li[@class='form-steps__footer-link']/button[contains(text(), 'Back')]";
-    private static final String BUTTON_CONTINUE_XPATH = "//li[@class='form-steps__footer-link']/button[contains(text(), 'Continue')]";
+    public static final String BUTTON_CLOSE_XPATH = "//button[@type='button']/span[@svg-title='close']";
+    public static final String BUTTON_BACK_XPATH = "//li[@class='form-steps__footer-link']/button[contains(text(), 'Back')]";
+    public static final String BUTTON_CONTINUE_XPATH = "//li[@class='form-steps__footer-link']/button[contains(text(), 'Continue')]";
 
     //METHODS
     public String getContactUsPageUrlIdentifier() {
@@ -45,6 +47,10 @@ public class ContactUsTakeover {
 
     public String getFormTitle() {
         return findElement(formTitle()).getText();
+    }
+
+    public String getServicePhone(String phoneName) {
+        return findElement(servicePhone(phoneName)).getText();
     }
 
     public String getCustomerServicePhone() {
@@ -112,12 +118,16 @@ public class ContactUsTakeover {
         return By.xpath(TITLE_FORM_XPATH);
     }
 
+    public By servicePhone(String phoneName) {
+        return By.xpath(String.format(SERVICE_PHONE_XPATH, phoneName));
+    }
+
     public By customerServicePhone() {
-        return By.xpath(CUSTOMER_SERVICE_PHONE_XPATH);
+        return By.xpath(CUSTOMER_SERVICE_PHONE_KEY);
     }
 
     public By roadAssistancePhone() {
-        return By.xpath(ROAD_ASSISTANCE_PHONE_XPATH);
+        return By.xpath(ROAD_ASSISTANCE_PHONE_KEY);
     }
 
     public By inputFirstName() {
