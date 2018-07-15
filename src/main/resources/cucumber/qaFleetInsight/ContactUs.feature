@@ -21,11 +21,11 @@ Feature: Check functionality of the Contact Us Form
   Scenario: I open the Contact Us Form and check the placeholders shown for Input fields
     When I open url "https://qa.fleetinsight.com"
     And I click the Contact Us link
-    Then I check that "First name" is shown as a placeholder for the "firstName" input field
-    And I check that "Last name" is shown as a placeholder for the "lastName" input field
-    And I check that "Email" is shown as a placeholder for the "email" input field
-    And I check that "Email" is shown as a placeholder for the "emailAlternate" input field
-    And I check that "Telephone" is shown as a placeholder for the "phone" input field
+    Then I check that "First name" is shown as a placeholder for the "FIRST NAME" input field
+    And I check that "Last name" is shown as a placeholder for the "LAST NAME" input field
+    And I check that "Email" is shown as a placeholder for the "EMAIL" input field
+    And I check that "Email" is shown as a placeholder for the "ALTERNATIVE EMAIL" input field
+    And I check that "Telephone" is shown as a placeholder for the "TELEPHONE" input field
 
   Scenario: I open the Contact Us Form and check options of the Salutation dropdown
     When I open url "https://qa.fleetinsight.com"
