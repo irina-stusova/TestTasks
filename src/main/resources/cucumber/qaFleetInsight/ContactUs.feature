@@ -11,8 +11,12 @@ Feature: Check functionality of the Contact Us Form
     And I click the "Contact Us" link
     Then I check correctness of the "Road Assistance" phone "(800) 526-0798"
 
-  Scenario: I open the Contact Us Form and check that "SELECT" is shown as a placeholder for the Salutation, Best Time To Reach You, Reason For Contact dropdowns
+  Scenario: [FI-2043]: Check that SELECT is a default value for all dropdowns on the Contact Us takeover (user is logged in)
     When I open url "https://qa.fleetinsight.com"
+    When I enter "random@test.com" into the "UserId" field
+    And I enter "Pa55word" into the "Password" field
+    And I click the "LOG IN" button
+#    Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/fleet"
     And I click the "Contact Us" link
     Then I check that "SELECT" is shown as a placeholder for the "SALUTATION" dropdown
     Then I check that "SELECT" is shown as a placeholder for the "Best Time To Reach you?" dropdown
@@ -64,8 +68,12 @@ Feature: Check functionality of the Contact Us Form
       | OTHER INQUIRY            |
       | FEEDBACK                 |
 
-  Scenario: I open the Contact Us Form and check ability to toggle between the Contact Types
+  Scenario: [FI-1227] Check that a user can select the way to be contacted on the Contact Us takeover if the user is logged in
     When I open url "https://qa.fleetinsight.com"
+     When I enter "random@test.com" into the "UserId" field
+    And I enter "Pa55word" into the "Password" field
+    And I click the "LOG IN" button
+#    Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/fleet"
     And I click the "Contact Us" link
     Then I check the Phone radio button is preselected by default
     Then I select the "Email" radio button
