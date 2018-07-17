@@ -290,18 +290,18 @@
         </dependency>
 
         <!-- Reporting -->
-        <dependency>
-            <groupId>com.epam.reportportal</groupId>
-            <artifactId>agent-java-cucumber</artifactId>
-            <version>3.0.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.epam.reportportal</groupId>-->
+            <!--<artifactId>agent-java-cucumber</artifactId>-->
+            <!--<version>3.0.1</version>-->
+        <!--</dependency>-->
 
         <!-- Logger [log4j]-->
-        <dependency>
-            <groupId>com.epam.reportportal</groupId>
-            <artifactId>logger-java-log4j</artifactId>
-            <version>3.0.2</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.epam.reportportal</groupId>-->
+            <!--<artifactId>logger-java-log4j</artifactId>-->
+            <!--<version>3.0.2</version>-->
+        <!--</dependency>-->
 
         <!-- for testing API -->
         <dependency>
@@ -358,11 +358,12 @@
         <!--<version>2.1.0</version>-->
         <!--</dependency>-->
 
-        <dependency>
-            <groupId>com.github.noraui</groupId>
-            <artifactId>ojdbc7</artifactId>
-            <version>${ojdbc7.version}</version>
-        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.github.noraui</groupId>-->
+            <!--<artifactId>ojdbc7</artifactId>-->
+            <!--<version>${ojdbc7.version}</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/net.sf.jt400/jt400 -->
         <dependency>

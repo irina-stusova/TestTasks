@@ -11,6 +11,10 @@ Feature: Check activity of the links on the Login Page Footer
   Scenario: FI-1248 (1): Check activity of the external links in the footer of the Login page
     When I open url "https://qa.fleetinsight.com"
     And I click the "gopenske.com" link
+    Then I check new browser tab is opened and "equals to" expected url:
+      """
+      https://www.gopenske.com/
+      """
 #    Then I get the page opened in a new browser window and check correctness of the url "https://www.gopenske.com/"
 
 

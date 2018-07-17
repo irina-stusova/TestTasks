@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -44,7 +45,7 @@ public class Browser {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
         executor = (JavascriptExecutor) driver;
-        driver.manage().timeouts().implicitlyWait(1000L, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(300L, TimeUnit.MILLISECONDS);
         return chromeInstance;
     }
 
@@ -149,22 +150,33 @@ public class Browser {
         findElement(by).click();
     }
 
-    public static void close() {
-        if (driverA.get() != null) {
-            com.penske.core.framework.Log.info("The driver is closing...");
-            try {
-                getDriver().close();
-                getDriver().quit();
-            } catch (Exception e) {
-                com.penske.core.framework.Log.warn(e.getMessage());
-            } finally {
-                driverA.remove();
-                ngWebDriver.remove();
-                browserName = null;
-                com.penske.core.framework.Log.info("The driver has been closed.");
-            }
-        }
+    public static void switchToTab(int tabNumber) {
+        List<String> tabs2 = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo().window(tabs2.get(tabNumber));
     }
+
+    public static void close() {
+        driver.close();
+        driver.quit();
+        System.out.println("The driver has been closed.");
+    }
+
+//    public static void close() {
+//        if (driverA.get() != null) {
+//            com.penske.core.framework.Log.info("The driver is closing...");
+//            try {
+//                getDriver().close();
+//                getDriver().quit();
+//            } catch (Exception e) {
+//                com.penske.core.framework.Log.warn(e.getMessage());
+//            } finally {
+//                driverA.remove();
+//                ngWebDriver.remove();
+//                browserName = null;
+//                com.penske.core.framework.Log.info("The driver has been closed.");
+//            }
+//        }
+//    }
 
     public static String getTitle() {
         return driver.getTitle();

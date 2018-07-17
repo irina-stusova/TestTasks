@@ -8,7 +8,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -43,12 +42,6 @@ public class ContactUsStepDefs {
         Assert.assertEquals(actualPhoneNumber, expectedPhoneNumber, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPhoneNumber, expectedPhoneNumber));
     }
 
-//    @Then("^I check correctness of the Road Assistance phone \"([^\"]*)\"$")
-//    public void iCheckCorrectnessOfTheRoadAssistancePhone(String expectedPhoneNumber) {
-//        String actualPhoneNumber = contactUsTakeover.getRoadAssistancePhone().substring(45, 59);
-//        actualPhoneNumber = actualPhoneNumber.replaceAll("\\D", "");
-//        Assert.assertEquals(actualPhoneNumber, expectedPhoneNumber, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", actualPhoneNumber, expectedPhoneNumber));
-//    }
 
     @Then("^I check that \"([^\"]*)\" is shown as a placeholder for the \"([^\"]*)\" dropdown$")
     public void iCheckThatIsShownAsAPlaceholderForTheDropdown(String expectedPlaceholder, String dropdownName) {

@@ -18,6 +18,8 @@ import java.time.Year;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.penske.core.framework.Browser.switchToTab;
+
 
 public class FooterStepDefs {
     private LoginPageFooter loginPageFooter = new LoginPageFooter();
@@ -102,6 +104,7 @@ public class FooterStepDefs {
         }
         By link = By.xpath(linkXpath);
         WebElement webElement = Browser.findElement(link);
+        Browser.focusOnElement(webElement);
         Browser.getInst().click(link, webElement);
     }
 
@@ -172,9 +175,24 @@ public class FooterStepDefs {
         Assert.assertEquals(currentUrl, expectedUrl, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", currentUrl, expectedUrl));
     }
 
-    @Then("^I get the page opened in a new browser window and check correctness of the url \"([^\"]*)\"$")
-    public void iGetThePageOpenedInANewBrowserWindowAndCheckCorrectnessOfTheUrl(String expectedUrl) {
-        String currentUrl = Browser.getCurrentUrl();
-        Assert.assertEquals(currentUrl, expectedUrl, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", currentUrl, expectedUrl));
+
+    @Then("^I check new browser tab is opened and \"?(equals to|contains)\"? expected url:$")
+    public void iCheckNewBrowserTabIsOpenedHasExpectedUrl(String state, String url) {
+        Browser.switchToTab(1);
+        String actualUrl = Browser.getCurrentUrl();
+        if (state.equalsIgnoreCase("equals to")) {
+            Assert.assertEquals(actualUrl, url,
+                    String.format("Actual Url '%s' is not equal to expected '%s'", actualUrl, url));
+        } else {
+            Assert.assertTrue(actualUrl.contains(url),
+                    String.format("Actual Url '%s' does not contain expected '%s'", actualUrl, url));
+        }
     }
+
+//    @Then("^I get the page opened in a new browser window and check correctness of the url \"([^\"]*)\"$")
+//    public void iGetThePageOpenedInANewBrowserWindowAndCheckCorrectnessOfTheUrl(String expectedUrl) {
+//        Browser.switchToTab(2);
+//        String currentUrl = Browser.getCurrentUrl();
+//        Assert.assertEquals(currentUrl, expectedUrl, String.format("\nAR doesn't match ER: \nAR: %s; ER: %s", currentUrl, expectedUrl));
+//    }
 }

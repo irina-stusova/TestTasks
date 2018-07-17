@@ -1,5 +1,6 @@
 package com.penske.products.fleetinsight.loginPage.loginForm;
 
+import com.penske.products.fleetinsight.loginPage.footer.LoginPageFooter;
 import org.openqa.selenium.By;
 
 import static com.penske.core.framework.Browser.getInst;
@@ -9,6 +10,10 @@ public class LoginForm {
     public static final String INPUT_PASSWORD_ID = "PASSWORD";
     public static final String BUTTON_LOGIN_XPATH = "//*[@id='submitLogin']";
 
+    private LoginPageFooter footer = new LoginPageFooter();
+    public LoginPageFooter getFooter(){
+        return footer;
+    }
     public void setInputUserId(String userId) {
         getInst().sendQuery(inputUserId(), userId);
     }

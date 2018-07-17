@@ -14,6 +14,9 @@ import com.penske.lessons.lesson9.Patter;
 import com.penske.lessons.utils.ArrayUtils;
 import com.penske.lessons.utils.FileUtils;
 import com.penske.lessons.utils.ListUtils;
+import com.penske.products.fleetinsight.globalFooter.GlobalFooter;
+import com.penske.products.fleetinsight.loginPage.footer.LoginPageFooter;
+import com.penske.products.fleetinsight.loginPage.loginForm.LoginForm;
 
 import java.io.IOException;
 import java.util.*;
@@ -525,7 +528,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("ffhfgh");
+//        System.out.println("ffhfgh");
+
+//        System.out.println(LoginPageFooter.LINK_LEGALIZATION_SERVICES_HREF);
+//        System.out.println(GlobalFooter.LINK_LEGALIZATION_SERVICES_HREF);
+//        LoginForm loginForm = new LoginForm();
+//        loginForm.getFooter().
 //        lesson1();
 //        lesson2();
 //        lesson3();

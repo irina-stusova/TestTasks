@@ -12,8 +12,8 @@ public class GlobalFooter {
     private static final String LABEL_COPYRIGHT_ID = "copyRight";
     public static final String LINK_PRIVACY_POLICY_HREF = "//a[contains(text(), 'Privacy Policy')]";
     public static final String LINK_TERMS_AND_CONDITIONS_HREF = "//a[contains(text(), 'Terms and Conditions')]";
-    public static final String LINK_LEGALIZATION_SERVICES_HREF = "//a[@class='site-footer__link site-footer__link--for-customers external'][@href='https://qa.pensketruckleasing.com/for-customers/legalization-services/']";
-    public static final String LINK_SAFETY_BULLETINS_HREF = "//a[@class='site-footer__link site-footer__link--for-customers external'][@href='https://qa.pensketruckleasing.com/for-customers/safety-bulletins/']";
+    public static final String LINK_LEGALIZATION_SERVICES_HREF = "//div[@class='site-footer__for-customers--link-container']//a[@href='https://qa.pensketruckleasing.com/for-customers/legalization-services/']";
+    public static final String LINK_SAFETY_BULLETINS_HREF = "//div[@class='site-footer__for-customers--link-container']//a[@href='https://qa.pensketruckleasing.com/for-customers/safety-bulletins/']";
 
 
     public String getLinkContactUs() {

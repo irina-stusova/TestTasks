@@ -1,6 +1,7 @@
 package com.penske.products.fleetinsight.tests;
 
 import com.penske.core.framework.BaseHooks;
+import com.penske.core.framework.Browser;
 import com.penske.products.fleetinsight.context.ContextFI;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -49,9 +50,13 @@ public class Hooks {
         new BaseHooks().printVerdict(scenario);
     }
 
-    @After(order = 2)
-    public void destroyContext() {
-        ContextFI.destroyContext();
-    }
+//    @After(order = 2)
+//    public void destroyContext() {
+//        ContextFI.destroyContext();
+//    }
 
+    @After(order = 2)
+    public void afterAll() {
+        Browser.close();
+    }
 }
