@@ -19,15 +19,15 @@ public class GooglePage {
     private static final String LINK_ENG_HREF = "//a[contains(text(), 'English')]";
 
     public void setSearchQuery(String query) {
-        Browser.getInst().sendQuery(inputQuery(), query);
+        Browser.sendQuery(inputQuery(), query);
     }
 
     public String getSearchQuery() {
-        return Browser.getInst().getText(inputQuery());
+        return Browser.getText(inputQuery());
     }
 
     public void search() {
-        Browser.getInst().sendQuery(inputQuery(), Keys.ENTER.toString());
+        Browser.sendQuery(inputQuery(), Keys.ENTER.toString());
     }
 
     public By inputQuery() {

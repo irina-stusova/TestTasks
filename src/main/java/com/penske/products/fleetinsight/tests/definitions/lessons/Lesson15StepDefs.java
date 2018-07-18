@@ -53,9 +53,9 @@ public class Lesson15StepDefs {
 
         By calendar = ukrZalSearchPage.calendar();
         WebElement webElement = findElement(calendar);
-        Browser.getInst().click(calendar, webElement);
+        Browser.click(calendar, webElement);
 
-        Browser.getInst().click(By.linkText("30"), webElement);
+        Browser.click(By.linkText("30"), webElement);
 //        WebElement month = findElement(calendar);
 //        Select monthCombo = new Select((WebElement) calendar);
 //        monthCombo.selectByVisibleText("Июль");
@@ -65,14 +65,14 @@ public class Lesson15StepDefs {
     public void iClickTheDepartureDayLink() {
         By linkTomorrow = ukrZalSearchPage.linkTomorrow();
         WebElement webElement = findElement(linkTomorrow);
-        Browser.getInst().click(linkTomorrow, webElement);
+        Browser.click(linkTomorrow, webElement);
     }
 
     @When("^I click the Search Trains On button$")
     public void iClickTheSearchTrainsOnButton() {
         By buttonSearch = ukrZalSearchPage.buttonSearch();
         WebElement webElement = findElement(buttonSearch);
-        Browser.getInst().click(buttonSearch, webElement);
+        Browser.click(buttonSearch, webElement);
     }
 
     @Then("^I'm presented with search results$")

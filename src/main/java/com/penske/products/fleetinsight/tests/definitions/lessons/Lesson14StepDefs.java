@@ -23,7 +23,7 @@ public class Lesson14StepDefs {
 
     @Given("^I open url \"([^\"]*)\"$")
     public void iOpenUrl(String url) {
-        Browser.getInst().getUrl(url);
+        Browser.getUrl(url);
     }
 
     @When("^I enter the text \"([^\"]*)\" into the Search input field$")
@@ -56,7 +56,7 @@ public class Lesson14StepDefs {
     public void iClickTheSearchResultLink(int n) {
         webElement = searchResultsItems.get(n);
         url = searchResultsItems.get(n).getUrl(webElement);
-        Browser.getInst().getUrl(searchResultsItems.get(n).getUrl(webElement));
+        Browser.getUrl(searchResultsItems.get(n).getUrl(webElement));
     }
 
     @Then("^I get the page url opened and compare it to required link$")

@@ -5,7 +5,7 @@
 //    public static void main(String[] args) {
 //        GooglePage googlePage = new GooglePage();
 //        String url = "https://www.google.com";
-//        Browser.getInst().getUrl(url);
+//        Browser.getUrl(url);
 //
 //        String searchQuery = "залiзниця";
 //

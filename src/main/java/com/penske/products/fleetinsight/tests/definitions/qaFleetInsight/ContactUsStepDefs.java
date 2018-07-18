@@ -108,7 +108,7 @@ public class ContactUsStepDefs {
         }
         By dropdownControl = contactUsTakeover.dropdownControl(dropdownId);
         WebElement webElement = Browser.findElement(dropdownControl);
-        Browser.getInst().click(dropdownControl, webElement);
+        Browser.click(dropdownControl, webElement);
     }
 
     @And("^I get \"([^\"]*)\" dropdown options as a list using locator \"([^\"]*)\"$")
@@ -156,6 +156,6 @@ public class ContactUsStepDefs {
         }
         By radioButton = By.xpath(radioButtonLocator);
         WebElement webElement = Browser.findElement(radioButton);
-        Browser.getInst().click(radioButton, webElement);
+        Browser.click(radioButton, webElement);
     }
 }

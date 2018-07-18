@@ -1,6 +1,6 @@
 Feature: Check activity of the links on the Login Page Footer
 
-  Scenario: FI-1230: Check activity of the Contact Us link on the Login Page
+  Scenario: [FI-1230] Check activity of the Contact Us link on the Login Page
     When I open url "https://qa.fleetinsight.com"
     And I click the "Contact Us" link
     Then I get the page opened in the same browser window and check correctness of the url "https://qa.fleetinsight.com/fiportal/public/contact-us"
@@ -8,7 +8,7 @@ Feature: Check activity of the links on the Login Page Footer
     Then I get the Login page shown "https://qa.fleetinsight.com/ssofiles/login.fcc"
 
 
-  Scenario: FI-1248 (1): Check activity of the external links in the footer of the Login page
+  Scenario: [FI-1248(1)] Check activity of the external links in the footer of the Login page
     When I open url "https://qa.fleetinsight.com"
     And I click the "gopenske.com" link
     Then I check new browser tab is opened and "equals to" expected url:
@@ -18,19 +18,19 @@ Feature: Check activity of the links on the Login Page Footer
 #    Then I get the page opened in a new browser window and check correctness of the url "https://www.gopenske.com/"
 
 
-  Scenario: FI-1248 (2): Check activity of the external links in the footer of the Login page
+  Scenario: [FI-1248(2)] Check activity of the external links in the footer of the Login page
     When I open url "https://qa.fleetinsight.com"
     And I click the "Used Trucks" link
 #    Then I get the page opened in a new browser window and check correctness of the url "https://www.penskeusedtrucks.com/"
 
 
-  Scenario: FI-1248 (3): Check activity of the external links in the footer of the Login page
+  Scenario: [FI-1248(3)] Check activity of the external links in the footer of the Login page
     When I open url "https://qa.fleetinsight.com"
     And I click the "Penske News" link
 #    Then I get the page opened in a new browser window and check correctness of the url "https://www.gopenske.com/newsroom/"
 
 
-  Scenario: FI-1519: Check activity of the Legalization Services link in the footer
+  Scenario: [FI-1519] Check activity of the Legalization Services link in the footer
     When I open url "https://qa.fleetinsight.com"
 #    And I check correctness of the wording "Legalization Services" for "Legalization Services" link
     And I click the "Legalization Services" link
@@ -43,7 +43,7 @@ Feature: Check activity of the links on the Login Page Footer
 #    Then I get the page opened in a new browser window and check correctness of the url "https://qa.pensketruckleasing.com/for-customers/legalization-services/"
 
 
-  Scenario: FI-1520: Check activity of the Safety Bulletins link in the footer
+  Scenario: [FI-1520] Check activity of the Safety Bulletins link in the footer
     When I open url "https://qa.fleetinsight.com"
 #    And I check correctness of the wording "Safety Bulletins" for "Safety Bulletins" link
     And I click the "Safety Bulletins" link

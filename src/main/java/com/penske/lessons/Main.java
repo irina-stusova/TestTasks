@@ -1,5 +1,6 @@
 package com.penske.lessons;
 
+import com.penske.core.framework.Browser;
 import com.penske.lessons.lesson1.*;
 import com.penske.lessons.lesson10.FileProperties;
 import com.penske.lessons.lesson11.*;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.util.*;
 import java.lang.StringBuffer;
 
+import static com.penske.core.framework.Browser.getDriver;
 import static com.penske.lessons.lesson5.UniversityEnum.Courses.ENGINEERING;
 import static com.penske.lessons.lesson5.UniversityEnum.Courses.ENGLISH;
 import static com.penske.lessons.lesson5.UniversityEnum.Courses.PORTUGUES;
@@ -529,8 +531,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 //        System.out.println("ffhfgh");
-
-//        System.out.println(LoginPageFooter.LINK_LEGALIZATION_SERVICES_HREF);
+        String handle = getDriver().getWindowHandle();
+        System.out.println(handle);
+//                LoginPageFooter.LINK_LEGALIZATION_SERVICES_HREF);
 //        System.out.println(GlobalFooter.LINK_LEGALIZATION_SERVICES_HREF);
 //        LoginForm loginForm = new LoginForm();
 //        loginForm.getFooter().

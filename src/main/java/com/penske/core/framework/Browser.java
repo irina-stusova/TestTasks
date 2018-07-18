@@ -15,9 +15,9 @@ public class Browser {
     public static final String INTERNET_EXPLORER = "internet explorer";
     public static final String CHROME = "chrome";
     public static final String FIREFOX = "firefox";
-    private static ThreadLocal<WebDriver> driverA = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static ThreadLocal<NgWebDriver> ngWebDriver = new ThreadLocal<>();
-    private static WebDriver driver;
+    //    private static WebDriver driver;
     private static String browserName;
     private static WebDriverWait wait;
     private static JavascriptExecutor executor;
@@ -25,14 +25,14 @@ public class Browser {
     public Browser() {
     }
 
-    private static Browser inst = init();
+//    private static Browser inst = init();
 
     public static WebDriver getDriver() {
-        if (driverA.get() == null) {
+        if (driver.get() == null) {
             browserName = BrowserConfig.getInstance().BROWSER_NAME();
             init();
         }
-        return driverA.get();
+        return driver.get();
     }
 
     public static NgWebDriver getNG() {
@@ -42,16 +42,16 @@ public class Browser {
     private static Browser init() {
         Browser chromeInstance = new Browser();
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, "src\\main\\resources\\drivers\\chromedriver.exe");
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, 10);
-        executor = (JavascriptExecutor) driver;
-        driver.manage().timeouts().implicitlyWait(300L, TimeUnit.MILLISECONDS);
+        driver.set(new ChromeDriver());
+        wait = new WebDriverWait(getDriver(), 10);
+        executor = (JavascriptExecutor) getDriver();
+        getDriver().manage().timeouts().implicitlyWait(5000L, TimeUnit.MILLISECONDS);
         return chromeInstance;
     }
 
-    public static Browser getInst() {
-        return inst;
-    }
+//    public static Browser Browser {
+//        return inst;
+//    }
 
     public static Object executeJavaScript(String js) {
         return executor.executeScript(js);
@@ -67,20 +67,20 @@ public class Browser {
     }
 
     public static int getScreenHeight() {
-        return driver.manage().window().getSize().getHeight();
+        return getDriver().manage().window().getSize().getHeight();
     }
 
     public static int getScreenWidth() {
-        return driver.manage().window().getSize().getWidth();
+        return getDriver().manage().window().getSize().getWidth();
     }
 
     public static WebElement findElement(By by) {
         System.out.println(String.format("Searching for element %s", by));
-        return driver.findElement(by);
+        return getDriver().findElement(by);
     }
 
     public static List<WebElement> findElements(By by) {
-        return driver.findElements(by);
+        return getDriver().findElements(by);
     }
 
     public static String getText(By by) {
@@ -141,23 +141,25 @@ public class Browser {
         findElement(by).sendKeys(query);
     }
 
-    public void getUrl(String url) {
-        driver.get(url);
+    public static void getUrl(String url) {
+        getDriver().get(url);
     }
 
-    public void click(By by, WebElement webElement) {
+    public static void click(By by, WebElement webElement) {
         Browser.focusOnElement(webElement);
         findElement(by).click();
     }
 
     public static void switchToTab(int tabNumber) {
-        List<String> tabs2 = new ArrayList<>(getDriver().getWindowHandles());
-        getDriver().switchTo().window(tabs2.get(tabNumber));
+        //    String oldTab = driver.getWindowHandle();
+        List<String> tabs = new ArrayList<>(getDriver().getWindowHandles());
+        // tabs.remove(oldTab);
+        getDriver().switchTo().window(tabs.get(tabNumber));
     }
 
     public static void close() {
-        driver.close();
-        driver.quit();
+        getDriver().close();
+        getDriver().quit();
         System.out.println("The driver has been closed.");
     }
 
@@ -179,14 +181,14 @@ public class Browser {
 //    }
 
     public static String getTitle() {
-        return driver.getTitle();
+        return getDriver().getTitle();
     }
 
     public static String getCurrentUrl() {
-        return driver.getCurrentUrl();
+        return getDriver().getCurrentUrl();
     }
 
     public void quit() {
-        driver.quit();
+        getDriver().quit();
     }
 }

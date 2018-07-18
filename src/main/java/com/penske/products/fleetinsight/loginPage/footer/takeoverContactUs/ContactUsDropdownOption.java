@@ -27,7 +27,7 @@ public class ContactUsDropdownOption implements WebElement {
     }
 
     public String getDropdownOption(String dropdownId) {
-        return Browser.getInst().getText(dropdownOption(dropdownId));
+        return Browser.getText(dropdownOption(dropdownId));
     }
 
     //SETTERs
@@ -37,7 +37,7 @@ public class ContactUsDropdownOption implements WebElement {
 
     //???
     public void setDrodownOption(String dropdownId, String dropdownOption) {
-        Browser.getInst().sendQuery(dropdownOption(dropdownId), dropdownOption); }
+        Browser.sendQuery(dropdownOption(dropdownId), dropdownOption); }
 
     //BY
     public By dropdownOption(String dropdownId) {

@@ -1,9 +1,9 @@
 package com.penske.products.fleetinsight.loginPage.footer.takeoverContactUs;
 
+import com.penske.core.framework.Browser;
 import org.openqa.selenium.By;
 
 import static com.penske.core.framework.Browser.*;
-import static com.penske.core.framework.Browser.getInst;
 
 public class ContactUsTakeover {
 
@@ -90,23 +90,23 @@ public class ContactUsTakeover {
     }
 
     public void setInputFirstName(String firstName) {
-        getInst().sendQuery(inputFirstName(), firstName);
+        Browser.sendQuery(inputFirstName(), firstName);
     }
 
     public void setInputLastName(String lastName) {
-        getInst().sendQuery(inputLastName(), lastName);
+        Browser.sendQuery(inputLastName(), lastName);
     }
 
     public void setInputEmail(String email) {
-        getInst().sendQuery(inputEmail(), email);
+        Browser.sendQuery(inputEmail(), email);
     }
 
     public void setInputAlternativeEmail(String emailAlternative) {
-        getInst().sendQuery(inputEmailAlternative(), emailAlternative);
+        Browser.sendQuery(inputEmailAlternative(), emailAlternative);
     }
 
     public void setInputTelephone(String telephone) {
-        getInst().sendQuery(inputTelephone(), telephone);
+        Browser.sendQuery(inputTelephone(), telephone);
     }
 
     //BY

@@ -1,9 +1,9 @@
 package com.penske.products.fleetinsight.loginPage.loginForm;
 
+import com.penske.core.framework.Browser;
 import com.penske.products.fleetinsight.loginPage.footer.LoginPageFooter;
 import org.openqa.selenium.By;
 
-import static com.penske.core.framework.Browser.getInst;
 
 public class LoginForm {
     public static final String INPUT_USERID_ID = "USER";
@@ -15,14 +15,14 @@ public class LoginForm {
         return footer;
     }
     public void setInputUserId(String userId) {
-        getInst().sendQuery(inputUserId(), userId);
+        Browser.sendQuery(inputUserId(), userId);
     }
 
     public void setInputPassword(String password) {
-        getInst().sendQuery(inputPassword(), password);
+        Browser.sendQuery(inputPassword(), password);
     }
     public void setInputValue(String password) {
-        getInst().sendQuery(inputPassword(), password);
+        Browser.sendQuery(inputPassword(), password);
     }
 
     public By inputUserId() {

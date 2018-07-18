@@ -19,19 +19,19 @@ public class UkrZalSearchPage {
     private static final String INPUT_DATE_XPATH = "//div[@class='date']/input[@type='hidden'][@value]";
 
     public void setSearchQueryFrom(String query) {
-        Browser.getInst().sendQuery(inputQueryFrom(), query);
+        Browser.sendQuery(inputQueryFrom(), query);
     }
 
     public String getSearchQueryFrom() {
-        return Browser.getInst().getText(inputQueryFrom());
+        return Browser.getText(inputQueryFrom());
     }
 
     public void setSearchQueryTo(String query) {
-        Browser.getInst().sendQuery(inputQueryTo(), query);
+        Browser.sendQuery(inputQueryTo(), query);
     }
 
     public String getSearchQueryTo() {
-        return Browser.getInst().getText(inputQueryTo());
+        return Browser.getText(inputQueryTo());
     }
 
     public String getCurrentDateXpath() {
@@ -39,11 +39,11 @@ public class UkrZalSearchPage {
     }
 
     public void setInputDate(String date) {
-        Browser.getInst().sendQuery(inputDate(), date);
+        Browser.sendQuery(inputDate(), date);
     }
 
     public void search() {
-        Browser.getInst().sendQuery(inputQueryFrom(), Keys.ENTER.toString());
+        Browser.sendQuery(inputQueryFrom(), Keys.ENTER.toString());
     }
 
 

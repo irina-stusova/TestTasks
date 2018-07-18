@@ -253,20 +253,20 @@
         </dependency>
 
         <!-- TEST NG -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.testng</groupId>-->
+            <!--<artifactId>testng</artifactId>-->
+            <!--<version>${testng.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <!-- CUCUMBER -->
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>info.cukes</groupId>-->
+            <!--<artifactId>cucumber-testng</artifactId>-->
+            <!--<version>${cucumber.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>info.cukes</groupId>
@@ -345,12 +345,12 @@
             <version>0.0.10</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.jasypt</groupId>
-            <artifactId>jasypt</artifactId>
-            <version>${jasypt.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.jasypt</groupId>-->
+            <!--<artifactId>jasypt</artifactId>-->
+            <!--<version>${jasypt.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <!--<dependency>-->
         <!--<groupId>io.github.bonigarcia</groupId>-->
@@ -401,11 +401,11 @@
             <artifactId>cucumber-java</artifactId>
             <version>1.2.5</version>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.13.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.testng</groupId>-->
+            <!--<artifactId>testng</artifactId>-->
+            <!--<version>6.13.1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-testng</artifactId>
@@ -415,6 +415,11 @@
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
             <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.13.1</version>
         </dependency>
     </dependencies>
 
