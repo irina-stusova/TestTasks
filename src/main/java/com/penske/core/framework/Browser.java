@@ -5,10 +5,12 @@ import com.paulhammant.ngwebdriver.NgWebDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
@@ -17,7 +19,6 @@ public class Browser {
     public static final String FIREFOX = "firefox";
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static ThreadLocal<NgWebDriver> ngWebDriver = new ThreadLocal<>();
-    //    private static WebDriver driver;
     private static String browserName;
     private static WebDriverWait wait;
     private static JavascriptExecutor executor;
@@ -43,15 +44,54 @@ public class Browser {
         Browser chromeInstance = new Browser();
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, "src\\main\\resources\\drivers\\chromedriver.exe");
         driver.set(new ChromeDriver());
-        wait = new WebDriverWait(getDriver(), 10);
+        wait = new WebDriverWait(getDriver(), 50);
         executor = (JavascriptExecutor) getDriver();
         getDriver().manage().timeouts().implicitlyWait(5000L, TimeUnit.MILLISECONDS);
         return chromeInstance;
     }
 
-//    public static Browser Browser {
-//        return inst;
-//    }
+    public static void waitUntilElementClickable(By by) {
+        wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public static void waitUntilElementPresent(By by) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public static void waitUntilElementVisible(By by) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public static void waitElementDisplayed(By by) {
+        waitUntilElementPresent(by);
+        wait.until(webDriver -> {
+            try {
+                if (webDriver.findElement(by).isDisplayed()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (NoSuchElementException e) {
+                return false;
+            }
+        });
+    }
+
+    public static void waitElementHasAttr(By by,String attrName) {
+        waitElementDisplayed(by);
+        wait.until(webDriver -> {
+            try {
+                if (!webDriver.findElement(by).getAttribute(attrName).isEmpty()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (NoSuchElementException e) {
+                return false;
+            }
+        });
+    }
+
 
     public static Object executeJavaScript(String js) {
         return executor.executeScript(js);
@@ -76,6 +116,7 @@ public class Browser {
 
     public static WebElement findElement(By by) {
         System.out.println(String.format("Searching for element %s", by));
+        waitUntilElementClickable(by);
         return getDriver().findElement(by);
     }
 
@@ -151,9 +192,7 @@ public class Browser {
     }
 
     public static void switchToTab(int tabNumber) {
-        //    String oldTab = driver.getWindowHandle();
         List<String> tabs = new ArrayList<>(getDriver().getWindowHandles());
-        // tabs.remove(oldTab);
         getDriver().switchTo().window(tabs.get(tabNumber));
     }
 
@@ -162,23 +201,6 @@ public class Browser {
         getDriver().quit();
         System.out.println("The driver has been closed.");
     }
-
-//    public static void close() {
-//        if (driverA.get() != null) {
-//            com.penske.core.framework.Log.info("The driver is closing...");
-//            try {
-//                getDriver().close();
-//                getDriver().quit();
-//            } catch (Exception e) {
-//                com.penske.core.framework.Log.warn(e.getMessage());
-//            } finally {
-//                driverA.remove();
-//                ngWebDriver.remove();
-//                browserName = null;
-//                com.penske.core.framework.Log.info("The driver has been closed.");
-//            }
-//        }
-//    }
 
     public static String getTitle() {
         return getDriver().getTitle();

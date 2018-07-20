@@ -1,6 +1,5 @@
 package com.penske.lessons;
 
-import com.penske.core.framework.Browser;
 import com.penske.lessons.lesson1.*;
 import com.penske.lessons.lesson10.FileProperties;
 import com.penske.lessons.lesson11.*;
@@ -15,9 +14,6 @@ import com.penske.lessons.lesson9.Patter;
 import com.penske.lessons.utils.ArrayUtils;
 import com.penske.lessons.utils.FileUtils;
 import com.penske.lessons.utils.ListUtils;
-import com.penske.products.fleetinsight.globalFooter.GlobalFooter;
-import com.penske.products.fleetinsight.loginPage.footer.LoginPageFooter;
-import com.penske.products.fleetinsight.loginPage.loginForm.LoginForm;
 
 import java.io.IOException;
 import java.util.*;
@@ -533,7 +529,7 @@ public class Main {
 //        System.out.println("ffhfgh");
         String handle = getDriver().getWindowHandle();
         System.out.println(handle);
-//                LoginPageFooter.LINK_LEGALIZATION_SERVICES_HREF);
+//                Footer.LINK_LEGALIZATION_SERVICES_HREF);
 //        System.out.println(GlobalFooter.LINK_LEGALIZATION_SERVICES_HREF);
 //        LoginForm loginForm = new LoginForm();
 //        loginForm.getFooter().

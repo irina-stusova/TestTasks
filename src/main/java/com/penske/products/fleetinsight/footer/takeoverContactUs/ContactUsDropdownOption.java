@@ -1,8 +1,9 @@
-package com.penske.products.fleetinsight.loginPage.footer.takeoverContactUs;
+package com.penske.products.fleetinsight.footer.takeoverContactUs;
 
 import com.penske.core.framework.Browser;
 import org.openqa.selenium.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactUsDropdownOption implements WebElement {
@@ -12,7 +13,7 @@ public class ContactUsDropdownOption implements WebElement {
     private static final String DROPDOWN_SALUTATION_ID = "combobox__1";
     private static final String DROPDOWN_BEST_TIME_TO_REACH_ID = "combobox__2";
     private static final String DROPDOWN_REASON_FOR_CONTACT_ID = "combobox__3";
-    private static final String DROPDOWN_OPTION_XPATH = ".//ul[@aria-labelledby='%s']/li";
+    private static final String DROPDOWN_OPTION_XPATH = ".//ul[@aria-labelledby='%s']/li[%s]";
 
 
     public ContactUsDropdownOption() {};
@@ -22,7 +23,7 @@ public class ContactUsDropdownOption implements WebElement {
     };
 
     //GETTERs
-    public String getDropdownOption(WebElement element) {
+    private String getDropdownOption(WebElement element) {
         return dropdownOption;
     }
 
@@ -31,7 +32,7 @@ public class ContactUsDropdownOption implements WebElement {
     }
 
     //SETTERs
-    public void setDropdownOption(String dropdownOption) {
+    private void setDropdownOption(String dropdownOption) {
         this.dropdownOption = dropdownOption;
     }
 
@@ -39,8 +40,33 @@ public class ContactUsDropdownOption implements WebElement {
     public void setDrodownOption(String dropdownId, String dropdownOption) {
         Browser.sendQuery(dropdownOption(dropdownId), dropdownOption); }
 
+   public List<String> getDropdownOptionsList(String dropdownName) {
+        String dropdownId = "";
+       switch (dropdownName) {
+           case "SALUTATION":
+               dropdownId = DROPDOWN_SALUTATION_ID;
+               break;
+           case "Best Time To Reach you?":
+               dropdownId = DROPDOWN_BEST_TIME_TO_REACH_ID;
+               break;
+           case "Reason for contact?":
+               dropdownId = DROPDOWN_REASON_FOR_CONTACT_ID;
+               break;
+           default:
+               throw new RuntimeException(String.format("No such dropdown name %s", dropdownName));
+       }
+       int count = Browser.findElements(By.xpath(String.format(DROPDOWN_OPTION_XPATH, dropdownId, "@*"))).size();
+       List<String> lOut = new ArrayList<>();
+       for (int i = 1; i <= count; i++) {
+           ContactUsDropdownOption option = new ContactUsDropdownOption();
+           option.setDropdownOption(Browser.findElement(By.xpath(String.format(DROPDOWN_OPTION_XPATH, dropdownId, i))).getText());
+           lOut.add(option.getDropdownOption(option));
+       }
+       return lOut;
+   }
+
     //BY
-    public By dropdownOption(String dropdownId) {
+    private By dropdownOption(String dropdownId) {
         return By.xpath(String.format(DROPDOWN_OPTION_XPATH, dropdownId));
     }
 

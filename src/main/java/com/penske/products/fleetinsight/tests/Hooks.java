@@ -30,32 +30,32 @@ public class Hooks {
         new BaseHooks().skipScenario(scenario);
     }
 
-//    @After(order = 20)
-//    public void embedScreenshot(Scenario scenario) {
-//        new BaseHooks().embedScreenshot(scenario);
-//    }
+    @After(order = 20)
+    public void embedScreenshot(Scenario scenario) {
+        new BaseHooks().embedScreenshot(scenario);
+    }
 
 //    @After(order = 15)
 //    public void closeDbConnections() {
 //        new BaseHooks().closeDbConnections();
 //    }
 
-//    @After(order = 10)
-//    public void afterScenario() {
-//        new BaseHooks().afterScenario();
-//    }
+    @After(order = 10)
+    public void afterScenario() {
+        new BaseHooks().afterScenario();
+    }
 
-//    @After(order = 5)
-//    public void verdict(Scenario scenario) {
-//        new BaseHooks().printVerdict(scenario);
-//    }
-
-//    @After(order = 2)
-//    public void destroyContext() {
-//        ContextFI.destroyContext();
-//    }
+    @After(order = 5)
+    public void verdict(Scenario scenario) {
+        new BaseHooks().printVerdict(scenario);
+    }
 
     @After(order = 2)
+    public void destroyContext() {
+        ContextFI.destroyContext();
+    }
+
+    @After(order = 1)
     public void afterAll() {
         Browser.close();
     }
