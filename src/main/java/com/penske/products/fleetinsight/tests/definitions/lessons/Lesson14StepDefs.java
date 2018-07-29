@@ -1,6 +1,7 @@
 package com.penske.products.fleetinsight.tests.definitions.lessons;
 
 import com.penske.core.framework.Browser;
+import com.penske.core.framework.Log;
 import com.penske.lessons.lesson14.GooglePage;
 import com.penske.lessons.lesson14.SearchResultsItem;
 import cucumber.api.java.en.Given;
@@ -24,6 +25,7 @@ public class Lesson14StepDefs {
     @Given("^I open url \"([^\"]*)\"$")
     public void iOpenUrl(String url) {
         Browser.getUrl(url);
+        Log.info(String.format("Url %s was opened", url));
     }
 
     @When("^I enter the text \"([^\"]*)\" into the Search input field$")
