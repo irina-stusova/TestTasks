@@ -28,6 +28,15 @@ Feature: Check functionality of the Contact Us Form
     And I check that "Email" is shown as a placeholder for the "ALTERNATIVE EMAIL" input field
     And I check that "Telephone" is shown as a placeholder for the "TELEPHONE" input field
 
+  Scenario: [Find in JIRA] Check that input fields are pre-populated if the Contact Us takeover was invoked after user logged in
+    When I open url "https://qa.fleetinsight.com"
+    And I login to the App with UserId "random@test.com" and Password "Pa55word"
+    And I click the Left Panel Menu icon
+    And I click the "My Profile" link in the Left Panel footer
+    Then I get the current user basic information
+    When I click the "Contact Us" link
+    Then I check that input fields are pre-populated with current user data available
+
   Scenario: I open the Contact Us Form and check options of the Salutation dropdown
     When I open url "https://qa.fleetinsight.com"
     And I click the "Contact Us" link

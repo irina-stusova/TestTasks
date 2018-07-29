@@ -54,23 +54,19 @@ public class ContactUsTakeover {
     }
 
     public String getInputFirstName() {
-        return getText(inputFirstName());
+        return getAttribute(inputFirstName(), "value");
     }
 
     public String getInputLastName() {
-        return getText(inputLastName());
+        return getAttribute(inputLastName(), "value");
     }
 
     public String getInputEmail() {
-        return getText(inputEmail());
-    }
-
-    public String getInputAlternativeEmail() {
-        return getText(inputEmailAlternative());
+        return getAttribute(inputEmail(), "value");
     }
 
     public String getInputTelephone() {
-        return getText(inputTelephone());
+        return getAttribute(inputTelephone(), "value");
     }
 
     public String getServicePhone(String serviceName) {
@@ -100,10 +96,9 @@ public class ContactUsTakeover {
                 throw new RuntimeException(String.format("No such dropdown name %s", dropdownName));
         }
         By by = placeholderDropdown(dropdownId);
-        Browser.waitElementHasAttr(by,"value");
+        Browser.waitElementHasAttr(by, "value");
         WebElement element = findElement(by);
-        String value = element.getAttribute("value");
-        return value;
+        return element.getAttribute("value");
     }
 
 
@@ -131,6 +126,29 @@ public class ContactUsTakeover {
         return findElement(placeholderInputField(placeholderName)).getAttribute("placeholder");
     }
 
+    public String getInputFieldValue(String inputFieldName) {
+        By by;
+        switch (inputFieldName) {
+            case "FIRST NAME":
+                by = By.name(INPUT_FIRST_NAME_BY_NAME);
+                break;
+            case "LAST NAME":
+                by = By.name(INPUT_LAST_NAME_BY_NAME);
+                break;
+            case "EMAIL":
+                by = By.name(INPUT_EMAIL_NAME);
+                break;
+            case "ALTERNATIVE EMAIL":
+                by = By.name(INPUT_ALTERNATIVE_EMAIL_NAME);
+                break;
+            case "TELEPHONE":
+                by = By.name(INPUT_TELEPHONE_NAME);
+                break;
+            default:
+                throw new RuntimeException(String.format("No such input field name %s", inputFieldName));
+        }
+        return findElement(by).getAttribute("value");
+    }
 
     public void clickDropdownControl(String dropdownName) {
         By dropdownControl;
@@ -151,6 +169,22 @@ public class ContactUsTakeover {
         Browser.click(dropdownControl, webElement);
     }
 
+    public void selectRadioButton(String radioButtonName) {
+        String radioButtonType = "";
+        switch (radioButtonName) {
+            case "Phone":
+                radioButtonType = RADIO_BUTTON_PHONE_TYPE_NAME;
+                break;
+            case "Email":
+                radioButtonType = RADIO_BUTTON_EMAIL_TYPE_NAME;
+                break;
+            default:
+                throw new RuntimeException(String.format("No such radio button name %s", radioButtonName));
+        }
+        By radioButton = radioButton(radioButtonType);
+        WebElement webElement = getRadioButton(radioButtonName);
+        Browser.click(radioButton, webElement);
+    }
 
     public void setInputFirstName(String firstName) {
         Browser.sendQuery(inputFirstName(), firstName);
