@@ -187,23 +187,23 @@ public class ContactUsTakeover {
     }
 
     public void setInputFirstName(String firstName) {
-        Browser.sendQuery(inputFirstName(), firstName);
+        Browser.sendKeys(inputFirstName(), firstName);
     }
 
     public void setInputLastName(String lastName) {
-        Browser.sendQuery(inputLastName(), lastName);
+        Browser.sendKeys(inputLastName(), lastName);
     }
 
     public void setInputEmail(String email) {
-        Browser.sendQuery(inputEmail(), email);
+        Browser.sendKeys(inputEmail(), email);
     }
 
     public void setInputAlternativeEmail(String emailAlternative) {
-        Browser.sendQuery(inputEmailAlternative(), emailAlternative);
+        Browser.sendKeys(inputEmailAlternative(), emailAlternative);
     }
 
     public void setInputTelephone(String telephone) {
-        Browser.sendQuery(inputTelephone(), telephone);
+        Browser.sendKeys(inputTelephone(), telephone);
     }
 
 

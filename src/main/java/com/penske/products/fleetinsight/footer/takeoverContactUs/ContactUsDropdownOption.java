@@ -38,7 +38,7 @@ public class ContactUsDropdownOption implements WebElement {
 
     //???
     public void setDrodownOption(String dropdownId, String dropdownOption) {
-        Browser.sendQuery(dropdownOption(dropdownId), dropdownOption); }
+        Browser.sendKeys(dropdownOption(dropdownId), dropdownOption); }
 
    public List<String> getDropdownOptionsList(String dropdownName) {
         String dropdownId = "";

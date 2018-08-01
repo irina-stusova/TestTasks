@@ -23,11 +23,11 @@ public class LoginForm {
     }
 
     private void setInputUserId(String userId) {
-        Browser.sendQuery(inputUserId(), userId);
+        Browser.sendKeys(inputUserId(), userId);
     }
 
     private void setInputPassword(String password) {
-        Browser.sendQuery(inputPassword(), password);
+        Browser.sendKeys(inputPassword(), password);
     }
 
     public void login(String userId, String password) {

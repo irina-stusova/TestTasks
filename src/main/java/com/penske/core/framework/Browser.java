@@ -182,6 +182,10 @@ public class Browser {
         findElement(by).sendKeys(query);
     }
 
+    public static void sendKeys(By by, String query) {
+        findElement(by).sendKeys(query);
+    }
+
     public static void getUrl(String url) {
         getDriver().get(url);
     }
